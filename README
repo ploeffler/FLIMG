@@ -1,7 +1,9 @@
-FLAMP is a management tool for transferring files using
-Amp-3.0 protocol.
+FL-IMG is a tool for transferring image-data using the Amp-3.0 protocol.
 
-The latest version can always be found at:
+It is based in the FLAMP Software by W1HKJ
+and requires fldigi as a backend.
+
+The latest version of fldigi can always be found at:
 
   http://www.w1hkj.com/
 
