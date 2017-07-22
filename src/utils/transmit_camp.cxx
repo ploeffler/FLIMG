@@ -5,7 +5,7 @@
 //	Dave Freese, W1HKJ, Copyright (C) 2010, 2011, 2012, 2013
 //	Robert Stiles, KK5VD, Copyright (C) 2014
 //
-// This file is part of FLAMP.
+// This file is part of FLIMG.
 //
 // This is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -51,9 +51,9 @@
 #include <FL/Fl_Menu_Item.H>
 #include <FL/Fl_File_Icon.H>
 
-#include "flamp.h"
+#include "flimg.h"
 #include "amp.h"
-#include "flamp_dialog.h"
+#include "flimg_dialog.h"
 
 #include "debug.h"
 #include "util.h"

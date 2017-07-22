@@ -5,7 +5,7 @@
 //	Dave Freese, W1HKJ, Copyright (C) 2010, 2011, 2012, 2013
 //	Robert Stiles, KK5VD, Copyright (C) 2013
 //
-// This file is part of FLAMP.
+// This file is part of FLIMG.
 //
 // This is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -22,8 +22,8 @@
 //
 // =====================================================================
 
-#ifndef __flamp_transmit_camp__
-#define __flamp_transmit_camp__
+#ifndef __flimg_transmit_camp__
+#define __flimg_transmit_camp__
 
 #define TX_CONTINIOUS   0x01  //!< @brief No breaks in the transmitted data.
 #define TX_MODEM_SAME   0x02  //!< @brief Header modem not used.
@@ -128,4 +128,4 @@ extern void clear_missing(void *ptr);
 extern void abort_tx_from_main(void *ptr);
 extern bool wait_for_rx(int max_wait_seconds);
 
-#endif /* defined(__flamp_transmit_camp__) */
+#endif /* defined(__flimg_transmit_camp__) */

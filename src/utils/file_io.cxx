@@ -4,7 +4,7 @@
 //            Robert Stiles, KK5VD (2013, 2014)
 //
 //
-// This file is part of FLAMP.
+// This file is part of FLIMG.
 //
 // This is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -44,8 +44,8 @@
 #include <math.h>
 
 #include "config.h"
-#include "flamp_config.h"
-#include "flamp.h"
+#include "flimg_config.h"
+#include "flimg.h"
 
 #include "debug.h"
 #include "util.h"
@@ -67,7 +67,7 @@
 #include "status.h"
 
 #ifdef WIN32
-#  include "flamprc.h"
+#  include "flimgrc.h"
 #  include "compat.h"
 #  define dirent fl_dirent_no_thanks
 #endif

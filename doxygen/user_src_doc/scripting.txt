@@ -38,7 +38,7 @@
 	<li> \ref ss_event_times "EVENT TIMES" </li>
 	<li> \ref ss_event_types "EVENT TYPE" </li>
 	<li> \ref ss_file_desc "FILE" &dagger; </li>
-	<li> \ref ss_file_id "FLAMP_CONFIG" &dagger; </li>
+	<li> \ref ss_file_id "FLIMG_CONFIG" &dagger; </li>
 	<li> \ref ss_hamcast_modem "HAMCAST MODEM" </li>
 	<li> \ref ss_hamcast_on_off "HAMCAST" </li>
 	<li> \ref ss_hdr_repeat "HDR REPEAT" </li>
@@ -81,10 +81,10 @@ is delimited by a comma.
 
 \par Example:
 
-This tag is used to identify the file as a FLAMP script file. This must be
+This tag is used to identify the file as a FLIMG script file. This must be
 located on the first line. If this is not present, the script will not
 execute.<br>
-<tt>\ref ss_file_id "FLAMP_CONFIG"</tt><br>
+<tt>\ref ss_file_id "FLIMG_CONFIG"</tt><br>
 <br>
 
 A command without parameters <br>
@@ -183,7 +183,7 @@ desired script file. Select the file in question and press the open button.
 This executes the script file. See \ref s_error_reporting "Error Reporting"
 in the event of errors.
 
-'Script'->'Execute Script (FLAMP Dir)' menu item reset the initial directory
+'Script'->'Execute Script (FLIMG Dir)' menu item reset the initial directory
 path back to the default starting location.
 
 \image latex menu_script_execution.png "Executing PL Scripts" width=2.63in
@@ -193,7 +193,7 @@ path back to the default starting location.
 
 Available list of command and description of their use:
 
-\subsection ss_file_id FLAMP_CONFIG File ID Tag
+\subsection ss_file_id FLIMG_CONFIG File ID Tag
 	Required file identifier. Must be located on the first line of the
 	configuration and queue load list.
 
@@ -203,7 +203,7 @@ Available list of command and description of their use:
 
 \subsection ss_auto_load_queue Auto load Queue
 	During triggered events reload the queue with the contents specified in
-	either the source queue list file or from FLAMP's 'tx' directory.
+	either the source queue list file or from FLIMG's 'tx' directory.
 <br>
 <br>
 	<b>Format:</b> <tt>AUTO LOAD QUEUE:\<ON|OFF\></tt>
@@ -373,7 +373,7 @@ Event Type List:
 
 \subsection ss_load_txdir Load from TX directory
 	When auto load queue on event is enable. Setting this option to on
-	cause the files to be loaded from FLAMP's tx directory. When disable
+	cause the files to be loaded from FLIMG's tx directory. When disable
 	the file are loaded the queue list.
 <br>
 <br>
@@ -426,17 +426,17 @@ allowing the repeater to reset. See \ref ss_interval_on_off "INTERVAL" and
 <br>
 	<b>Format:</b> <tt>RX INTERVAL:\<time_in_seconds\></tt>
 
-\subsection ss_sync_with FLDIGI and FLAMP modem sync
-	Used to synchronize the modem selected between FLDIGI and FLAMP.
+\subsection ss_sync_with FLDIGI and FLIMG modem sync
+	Used to synchronize the modem selected between FLDIGI and FLIMG.
 <br>
 	<b>Format:</b> <tt>SYNC WITH:\<direction\>,\<ON|OFF\></tt>
 <br>
 <br>
 Sync List:
 <ul>
-<li>\"FLAMP\"<br>Sync FLDIGI's modem to FLAMP's</li>
-<li>\"FLDIGI\"<br>Sync FLAMP's modem to FLDIGI's</li>
-<li>\"PRIOR\"<br>Set FLDIGI's modem to FLAMP's just prior to sending
+<li>\"FLIMG\"<br>Sync FLDIGI's modem to FLIMG's</li>
+<li>\"FLDIGI\"<br>Sync FLIMG's modem to FLDIGI's</li>
+<li>\"PRIOR\"<br>Set FLDIGI's modem to FLIMG's just prior to sending
 transmit data.</li>
 
 \subsection ss_tx_interval Transmit interval time (minutes).
@@ -506,7 +506,7 @@ See \ref s_os_differences.  Not all commands are used in this example.
 <br>
 
 \verbatim
-FLAMP_CONFIG  # Required file identifier. Must be located on the first line.
+FLIMG_CONFIG  # Required file identifier. Must be located on the first line.
 # Remark lines start with the character ‘#'.
 RESET:ALL                          # Disable all Event and Configuration panel settings.
 UNPROTO MARKERS:ON                 # Enable unprotocol markers (pain text separators)
@@ -517,7 +517,7 @@ BLOCKS:80                          # Set the size of the transmit blocks
 MODEM:BPSK63                       # Set the the transmit mode to x
 CALLFROM:KK5VD                     # Assign the callfrom call.
 INFO:"Madison, AL EM64or"          # Set the information field in the configuration panel
-SYNC WITH:PRIOR,ON                 # Sync FLDIGI's modem to FLAMP's
+SYNC WITH:PRIOR,ON                 # Sync FLDIGI's modem to FLIMG's
 CLEAR TXQ:                         # Clear the transmit queue
 PATH:"/Root_drive/directory_path/" # Directory path to the pending FILE load commands
 PROTO:OFF                          # Set the protocol use to the pending FILE commands
@@ -566,7 +566,7 @@ See \ref s_os_differences.
 <br>
 
 \verbatim
-FLAMP_CONFIG
+FLIMG_CONFIG
 CLEAR TXQ:
 PATH:"C:/directory_path/"
 PROTO:OFF

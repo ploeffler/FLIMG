@@ -4,7 +4,7 @@
 //  Author(s):
 //	Robert Stiles, KK5VD, Copyright (C) 2014
 //
-// This file is part of FLAMP.
+// This file is part of FLIMG.
 //
 // This is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -21,8 +21,8 @@
 //
 // =====================================================================
 
-#ifndef __flamp_global_amp__
-#define __flamp_global_amp__
+#ifndef __flimg_global_amp__
+#define __flimg_global_amp__
 
 //! Use to sync class cAmp global variables via a threaded mutex lock access.
 class cAmpGlobal {
@@ -79,4 +79,4 @@ public:
 };
 
 
-#endif /* defined(__flamp_global_amp__) */
+#endif /* defined(__flimg_global_amp__) */

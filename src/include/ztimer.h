@@ -5,7 +5,7 @@
 // Author(s):
 //  Copyright (C) 2014 Robert Stiles, KK5VD
 //
-// This file is part of FLAMP.
+// This file is part of FLIMG.
 //
 // This is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by

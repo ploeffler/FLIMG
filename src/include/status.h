@@ -6,7 +6,7 @@
 // 	Dave Freese, W1HKJ Copyright (C) 2010
 //	Robert Stiles, KK5VD Copyright (C) 2013
 //
-// This file is part of FLAMP.
+// This file is part of FLIMG.
 //
 // This is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -56,8 +56,8 @@ struct status {
 	int repeatNN;
 	int repeat_header;
 
-	bool sync_mode_flamp_fldigi;
-	bool sync_mode_fldigi_flamp;
+	bool sync_mode_flimg_fldigi;
+	bool sync_mode_fldigi_flimg;
 	bool fldigi_xmt_mode_change;
 
 	int repeat_every;

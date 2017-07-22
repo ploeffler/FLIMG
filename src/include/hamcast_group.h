@@ -1,6 +1,6 @@
 /*****************************************************************
 
-hamcast_group.h (FLAMP)
+hamcast_group.h (FLIMG)
  
 Author(s):
 
@@ -17,8 +17,8 @@ Author(s):
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 *******************************************************************/
 
-#ifndef __flamp_hamcast_group__
-#define __flamp_hamcast_group__
+#ifndef __flimg_hamcast_group__
+#define __flimg_hamcast_group__
 
 #include <FL/Fl.H>
 #include <FL/Enumerations.H>
@@ -39,4 +39,4 @@ private:
     void draw(void);
 };
 
-#endif /* defined(__flamp_hamcast_group__) */
+#endif /* defined(__flimg_hamcast_group__) */

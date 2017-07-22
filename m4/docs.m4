@@ -1,4 +1,4 @@
-AC_DEFUN([AC_FLAMP_DOCS], [
+AC_DEFUN([AC_FLIMG_DOCS], [
   AC_ARG_WITH([asciidoc],
               AC_HELP_STRING([--with-asciidoc], [build documentation using asciidoc @<:@autodetect@:>@]),
               [case "${withval}" in

@@ -5,7 +5,7 @@
 //	Robert Stiles, KK5VD, Copyright (C) 2013, 2015
 //	Dave Freese, W1HKJ, Copyright (C) 2013
 //
-// This file is part of FLAMP.
+// This file is part of FLIMG.
 //
 // This is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -21,8 +21,8 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef flamp_circular_queue_h
-#define flamp_circular_queue_h
+#ifndef flimg_circular_queue_h
+#define flimg_circular_queue_h
 
 #include <pthread.h>
 #include <string>
@@ -127,4 +127,4 @@ public:
 };
 
 
-#endif // flamp_circular_queue_h
+#endif // flimg_circular_queue_h

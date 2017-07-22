@@ -6,7 +6,7 @@
 //	Dave Freese, W1HKJ Copyright (C) 2010
 //  Robert Stiles, KK5VD Copyright (C) 2013
 //
-// This file is part of FLAMP.
+// This file is part of FLIMG.
 //
 // This is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -32,8 +32,8 @@
 
 #include "status.h"
 #include "config.h"
-#include "flamp.h"
-#include "flamp_dialog.h"
+#include "flimg.h"
+#include "flimg_dialog.h"
 #include "file_io.h"
 
 status progStatus = {
@@ -61,8 +61,8 @@ status progStatus = {
 	1,				// repeatNN
 	1,				// repeat_header
 
-	false,			// bool sync_mode_flamp_fldigi;
-	false,			// bool sync_mode_fldigi_flamp;
+	false,			// bool sync_mode_flimg_fldigi;
+	false,			// bool sync_mode_fldigi_flimg;
 	false,			// bool fldigi_xmt_mode_change;
 
 	1,				// int repeat_every;
@@ -120,7 +120,7 @@ extern std::string selected_encoder_string;
  ***********************************************************/
 void status::saveLastState()
 {
-	Fl_Preferences FLAMPpref(flampHomeDir.c_str(), "w1hkj.com",  PACKAGE_NAME);
+	Fl_Preferences FLIMGpref(flimgHomeDir.c_str(), "w1hkj.com",  PACKAGE_NAME);
 
 	int mX = main_window->x();
 	int mY = main_window->y();
@@ -129,76 +129,76 @@ void status::saveLastState()
 		mainY = mY;
 	}
 
-	FLAMPpref.set("version", PACKAGE_VERSION);
-	FLAMPpref.set("mainx", mX);
-	FLAMPpref.set("mainy", mY);
+	FLIMGpref.set("version", PACKAGE_VERSION);
+	FLIMGpref.set("mainx", mX);
+	FLIMGpref.set("mainy", mY);
 
 	my_call = txt_tx_mycall->value();
 	my_info = txt_tx_myinfo->value();
 
-	FLAMPpref.set("mycall", my_call.c_str());
-	FLAMPpref.set("myinfo", my_info.c_str());
-	FLAMPpref.set("socket_address", socket_addr.c_str());
-	FLAMPpref.set("socket_port", socket_port.c_str());
-	FLAMPpref.set("xmlrpc_address", xmlrpc_addr.c_str());
-	FLAMPpref.set("xmlrpc_port", xmlrpc_port.c_str());
-	FLAMPpref.set("blocksize", blocksize);
-	FLAMPpref.set("repeatNN", repeatNN);
-	FLAMPpref.set("repeat_header", repeat_header);
-	FLAMPpref.set("selected_mode", selected_mode);
-	FLAMPpref.set("compression", use_compression);
-	FLAMPpref.set("encoder", encoder);
-	FLAMPpref.set("encoder_string", encoder_string.c_str());
-	FLAMPpref.set("sync_mode_flamp_fldigi", sync_mode_flamp_fldigi);
-	FLAMPpref.set("sync_mode_fldigi_flamp", sync_mode_fldigi_flamp);
-	FLAMPpref.set("fldigi_xmt_mode_change", fldigi_xmt_mode_change);
+	FLIMGpref.set("mycall", my_call.c_str());
+	FLIMGpref.set("myinfo", my_info.c_str());
+	FLIMGpref.set("socket_address", socket_addr.c_str());
+	FLIMGpref.set("socket_port", socket_port.c_str());
+	FLIMGpref.set("xmlrpc_address", xmlrpc_addr.c_str());
+	FLIMGpref.set("xmlrpc_port", xmlrpc_port.c_str());
+	FLIMGpref.set("blocksize", blocksize);
+	FLIMGpref.set("repeatNN", repeatNN);
+	FLIMGpref.set("repeat_header", repeat_header);
+	FLIMGpref.set("selected_mode", selected_mode);
+	FLIMGpref.set("compression", use_compression);
+	FLIMGpref.set("encoder", encoder);
+	FLIMGpref.set("encoder_string", encoder_string.c_str());
+	FLIMGpref.set("sync_mode_flimg_fldigi", sync_mode_flimg_fldigi);
+	FLIMGpref.set("sync_mode_fldigi_flimg", sync_mode_fldigi_flimg);
+	FLIMGpref.set("fldigi_xmt_mode_change", fldigi_xmt_mode_change);
 
-	FLAMPpref.set("repeat_every", repeat_every);
-	FLAMPpref.set("repeat_at_times", repeat_at_times);
-	FLAMPpref.set("repeat_times", repeat_times.c_str());
+	FLIMGpref.set("repeat_every", repeat_every);
+	FLIMGpref.set("repeat_at_times", repeat_at_times);
+	FLIMGpref.set("repeat_times", repeat_times.c_str());
 
-	FLAMPpref.set("repeat_forever", repeat_forever);
+	FLIMGpref.set("repeat_forever", repeat_forever);
 
-	FLAMPpref.set("use_repeater_interval", use_txrx_interval);
-	FLAMPpref.set("repeater_tx_minutes", tx_interval_minutes);
-	FLAMPpref.set("repeater_rx_seconds", rx_interval_seconds);
+	FLIMGpref.set("use_repeater_interval", use_txrx_interval);
+	FLIMGpref.set("repeater_tx_minutes", tx_interval_minutes);
+	FLIMGpref.set("repeater_rx_seconds", rx_interval_seconds);
 
-	FLAMPpref.set("disable_header_modem_on_block_fills", disable_header_modem_on_block_fills);
-	FLAMPpref.set("use_header_modem", use_header_modem);
-	FLAMPpref.set("header_selected_mode", header_selected_mode);
+	FLIMGpref.set("disable_header_modem_on_block_fills", disable_header_modem_on_block_fills);
+	FLIMGpref.set("use_header_modem", use_header_modem);
+	FLIMGpref.set("header_selected_mode", header_selected_mode);
 
-	FLAMPpref.set("use_tx_on_report", use_tx_on_report);
+	FLIMGpref.set("use_tx_on_report", use_tx_on_report);
 
-	FLAMPpref.set("clear_tosend_on_tx_blocks", clear_tosend_on_tx_blocks);
+	FLIMGpref.set("clear_tosend_on_tx_blocks", clear_tosend_on_tx_blocks);
 
-	FLAMPpref.set("enable_delete_warning", enable_delete_warning);
+	FLIMGpref.set("enable_delete_warning", enable_delete_warning);
 
-	FLAMPpref.set("enable_tx_unproto", enable_tx_unproto);
-	FLAMPpref.set("enable_unproto_markers", enable_unproto_markers);
+	FLIMGpref.set("enable_tx_unproto", enable_tx_unproto);
+	FLIMGpref.set("enable_unproto_markers", enable_unproto_markers);
 
-	FLAMPpref.set("queue_fills_only", queue_fills_only);
+	FLIMGpref.set("queue_fills_only", queue_fills_only);
 
-	FLAMPpref.set("auto_load_queue", auto_load_queue);
-	FLAMPpref.set("load_from_tx_folder", load_from_tx_folder);
+	FLIMGpref.set("auto_load_queue", auto_load_queue);
+	FLIMGpref.set("load_from_tx_folder", load_from_tx_folder);
 
-	FLAMPpref.set("auto_load_queue_path", auto_load_queue_path.c_str());
+	FLIMGpref.set("auto_load_queue_path", auto_load_queue_path.c_str());
 
-	FLAMPpref.set("hamcast_mode_cycle", hamcast_mode_cycle);
+	FLIMGpref.set("hamcast_mode_cycle", hamcast_mode_cycle);
 
-	FLAMPpref.set("hamcast_mode_enable_1", hamcast_mode_enable_1);
-	FLAMPpref.set("hamcast_mode_selection_1", hamcast_mode_selection_1);
+	FLIMGpref.set("hamcast_mode_enable_1", hamcast_mode_enable_1);
+	FLIMGpref.set("hamcast_mode_selection_1", hamcast_mode_selection_1);
 
-	FLAMPpref.set("hamcast_mode_enable_2", hamcast_mode_enable_2);
-	FLAMPpref.set("hamcast_mode_selection_2", hamcast_mode_selection_2);
+	FLIMGpref.set("hamcast_mode_enable_2", hamcast_mode_enable_2);
+	FLIMGpref.set("hamcast_mode_selection_2", hamcast_mode_selection_2);
 
-	FLAMPpref.set("hamcast_mode_enable_3", hamcast_mode_enable_3);
-	FLAMPpref.set("hamcast_mode_selection_3", hamcast_mode_selection_3);
+	FLIMGpref.set("hamcast_mode_enable_3", hamcast_mode_enable_3);
+	FLIMGpref.set("hamcast_mode_selection_3", hamcast_mode_selection_3);
 
-	FLAMPpref.set("hamcast_mode_enable_4", hamcast_mode_enable_4);
-	FLAMPpref.set("hamcast_mode_selection_4", hamcast_mode_selection_4);
+	FLIMGpref.set("hamcast_mode_enable_4", hamcast_mode_enable_4);
+	FLIMGpref.set("hamcast_mode_selection_4", hamcast_mode_selection_4);
 
-	FLAMPpref.set("auto_rx_save", auto_rx_save);
-	FLAMPpref.set("auto_rx_save_local_time", auto_rx_save_local_time);
+	FLIMGpref.set("auto_rx_save", auto_rx_save);
+	FLIMGpref.set("auto_rx_save_local_time", auto_rx_save_local_time);
 
 }
 
@@ -207,141 +207,141 @@ void status::saveLastState()
  ***********************************************************/
 void status::loadLastState()
 {
-	Fl_Preferences FLAMPpref(flampHomeDir.c_str(), "w1hkj.com", PACKAGE_NAME);
+	Fl_Preferences FLIMGpref(flimgHomeDir.c_str(), "w1hkj.com", PACKAGE_NAME);
 
-	if (FLAMPpref.entryExists("version")) {
+	if (FLIMGpref.entryExists("version")) {
 		char *defbuffer;
 
-		FLAMPpref.get("mainx", mainX, mainX);
-		FLAMPpref.get("mainy", mainY, mainY);
+		FLIMGpref.get("mainx", mainX, mainX);
+		FLIMGpref.get("mainy", mainY, mainY);
 
-		FLAMPpref.get("mycall", defbuffer, "");
+		FLIMGpref.get("mycall", defbuffer, "");
 		my_call = defbuffer; free(defbuffer);
 
-		FLAMPpref.get("myinfo", defbuffer, "");
+		FLIMGpref.get("myinfo", defbuffer, "");
 		my_info = defbuffer; free(defbuffer);
 
-		FLAMPpref.get("socket_address", defbuffer, socket_addr.c_str());
+		FLIMGpref.get("socket_address", defbuffer, socket_addr.c_str());
 		socket_addr = defbuffer; free(defbuffer);
-		FLAMPpref.get("socket_port", defbuffer, socket_port.c_str());
+		FLIMGpref.get("socket_port", defbuffer, socket_port.c_str());
 		socket_port = defbuffer; free(defbuffer);
 
-		FLAMPpref.get("xmlrpc_address", defbuffer, xmlrpc_addr.c_str());
+		FLIMGpref.get("xmlrpc_address", defbuffer, xmlrpc_addr.c_str());
 		xmlrpc_addr = defbuffer; free(defbuffer);
-		FLAMPpref.get("xmlrpc_port", defbuffer, xmlrpc_port.c_str());
+		FLIMGpref.get("xmlrpc_port", defbuffer, xmlrpc_port.c_str());
 		xmlrpc_port = defbuffer; free(defbuffer);
 
-		FLAMPpref.get("blocksize", blocksize, blocksize);
-		FLAMPpref.get("repeatNN", repeatNN, repeatNN);
-		FLAMPpref.get("repeat_header", repeat_header, repeat_header);
+		FLIMGpref.get("blocksize", blocksize, blocksize);
+		FLIMGpref.get("repeatNN", repeatNN, repeatNN);
+		FLIMGpref.get("repeat_header", repeat_header, repeat_header);
 
-		FLAMPpref.get("selected_mode", selected_mode, selected_mode);
+		FLIMGpref.get("selected_mode", selected_mode, selected_mode);
 
 		int i = 0;
-		FLAMPpref.get("compression", i, use_compression);
+		FLIMGpref.get("compression", i, use_compression);
 		use_compression = i;
 
-		FLAMPpref.get("sync_mode_flamp_fldigi", i, sync_mode_flamp_fldigi);
-		sync_mode_flamp_fldigi = i;
+		FLIMGpref.get("sync_mode_flimg_fldigi", i, sync_mode_flimg_fldigi);
+		sync_mode_flimg_fldigi = i;
 
-		FLAMPpref.get("sync_mode_fldigi_flamp", i, sync_mode_fldigi_flamp);
-		sync_mode_fldigi_flamp = i;
+		FLIMGpref.get("sync_mode_fldigi_flimg", i, sync_mode_fldigi_flimg);
+		sync_mode_fldigi_flimg = i;
 
 
-		FLAMPpref.get("fldigi_xmt_mode_change", i, fldigi_xmt_mode_change);
+		FLIMGpref.get("fldigi_xmt_mode_change", i, fldigi_xmt_mode_change);
 		fldigi_xmt_mode_change = i;
 
-		FLAMPpref.get("encoder", encoder, encoder);
-		FLAMPpref.get("encoder_string", defbuffer, encoder_string.c_str());
+		FLIMGpref.get("encoder", encoder, encoder);
+		FLIMGpref.get("encoder_string", defbuffer, encoder_string.c_str());
 		encoder_string = defbuffer; free(defbuffer);
 
-		FLAMPpref.get("repeat_every", repeat_every, repeat_every);
-		FLAMPpref.get("repeat_at_times", i, repeat_at_times);
+		FLIMGpref.get("repeat_every", repeat_every, repeat_every);
+		FLIMGpref.get("repeat_at_times", i, repeat_at_times);
 		repeat_at_times = i;
 
-		FLAMPpref.get("repeat_times", defbuffer, repeat_times.c_str());
+		FLIMGpref.get("repeat_times", defbuffer, repeat_times.c_str());
 		repeat_times = defbuffer; free(defbuffer);
 
-		FLAMPpref.get("repeat_forever", i, repeat_forever);
+		FLIMGpref.get("repeat_forever", i, repeat_forever);
 		repeat_forever = i;
 
-		FLAMPpref.get("use_repeater_interval", i, use_txrx_interval);
+		FLIMGpref.get("use_repeater_interval", i, use_txrx_interval);
 		use_txrx_interval = (bool) i;
 
-		FLAMPpref.get("repeater_tx_minutes", i, tx_interval_minutes);
+		FLIMGpref.get("repeater_tx_minutes", i, tx_interval_minutes);
 		tx_interval_minutes = i;
 
-		FLAMPpref.get("repeater_rx_seconds", i, rx_interval_seconds);
+		FLIMGpref.get("repeater_rx_seconds", i, rx_interval_seconds);
 		rx_interval_seconds = i;
 
-		FLAMPpref.get("disable_header_modem_on_block_fills", i, disable_header_modem_on_block_fills);
+		FLIMGpref.get("disable_header_modem_on_block_fills", i, disable_header_modem_on_block_fills);
 		disable_header_modem_on_block_fills = (bool) i;
 
-		FLAMPpref.get("use_header_modem", i, use_header_modem);
+		FLIMGpref.get("use_header_modem", i, use_header_modem);
 		use_header_modem = (bool) i;
 
-		FLAMPpref.get("header_selected_mode", i, header_selected_mode);
+		FLIMGpref.get("header_selected_mode", i, header_selected_mode);
 		header_selected_mode = i;
 
-		FLAMPpref.get("use_tx_on_report", i, use_tx_on_report);
+		FLIMGpref.get("use_tx_on_report", i, use_tx_on_report);
 		use_tx_on_report = i;
 
-		FLAMPpref.get("clear_tosend_on_tx_blocks", i, clear_tosend_on_tx_blocks);
+		FLIMGpref.get("clear_tosend_on_tx_blocks", i, clear_tosend_on_tx_blocks);
 		clear_tosend_on_tx_blocks = (bool) i;
 
-		FLAMPpref.get("enable_delete_warning", i, enable_delete_warning);
+		FLIMGpref.get("enable_delete_warning", i, enable_delete_warning);
 		enable_delete_warning = (bool) i;
 
-		FLAMPpref.get("enable_tx_unproto", i, enable_tx_unproto);
+		FLIMGpref.get("enable_tx_unproto", i, enable_tx_unproto);
 		enable_tx_unproto = (bool) i;
 
-		FLAMPpref.get("enable_unproto_markers", i, enable_unproto_markers);
+		FLIMGpref.get("enable_unproto_markers", i, enable_unproto_markers);
 		enable_unproto_markers = (bool) i;
 
-		FLAMPpref.get("queue_fills_only", i, queue_fills_only);
+		FLIMGpref.get("queue_fills_only", i, queue_fills_only);
 		queue_fills_only = (bool) i;
 
-		FLAMPpref.get("auto_load_queue", i, auto_load_queue);
+		FLIMGpref.get("auto_load_queue", i, auto_load_queue);
 		auto_load_queue = (bool) i;
 
-		FLAMPpref.get("load_from_tx_folder", i, load_from_tx_folder);
+		FLIMGpref.get("load_from_tx_folder", i, load_from_tx_folder);
 		load_from_tx_folder = (bool) i;
 
-		FLAMPpref.get("auto_load_queue_path", defbuffer, "");
+		FLIMGpref.get("auto_load_queue_path", defbuffer, "");
 		auto_load_queue_path.assign(defbuffer);
 		free(defbuffer);
 
-		FLAMPpref.get("hamcast_mode_cycle", i, hamcast_mode_cycle);
+		FLIMGpref.get("hamcast_mode_cycle", i, hamcast_mode_cycle);
 		hamcast_mode_cycle = (bool) i;
 
-		FLAMPpref.get("hamcast_mode_enable_1", i, hamcast_mode_enable_1);
+		FLIMGpref.get("hamcast_mode_enable_1", i, hamcast_mode_enable_1);
 		hamcast_mode_enable_1 = (bool) i;
 
-		FLAMPpref.get("hamcast_mode_selection_1", i, hamcast_mode_selection_1);
+		FLIMGpref.get("hamcast_mode_selection_1", i, hamcast_mode_selection_1);
 		hamcast_mode_selection_1 = i;
 
-		FLAMPpref.get("hamcast_mode_enable_2", i, hamcast_mode_enable_2);
+		FLIMGpref.get("hamcast_mode_enable_2", i, hamcast_mode_enable_2);
 		hamcast_mode_enable_2 = (bool) i;
 
-		FLAMPpref.get("hamcast_mode_selection_2", i, hamcast_mode_selection_2);
+		FLIMGpref.get("hamcast_mode_selection_2", i, hamcast_mode_selection_2);
 		hamcast_mode_selection_2 = i;
 
-		FLAMPpref.get("hamcast_mode_enable_3", i, hamcast_mode_enable_3);
+		FLIMGpref.get("hamcast_mode_enable_3", i, hamcast_mode_enable_3);
 		hamcast_mode_enable_3 = (bool) i;
 
-		FLAMPpref.get("hamcast_mode_selection_3", i, hamcast_mode_selection_3);
+		FLIMGpref.get("hamcast_mode_selection_3", i, hamcast_mode_selection_3);
 		hamcast_mode_selection_3 = i;
 
-		FLAMPpref.get("hamcast_mode_enable_4", i, hamcast_mode_enable_4);
+		FLIMGpref.get("hamcast_mode_enable_4", i, hamcast_mode_enable_4);
 		hamcast_mode_enable_4 = (bool) i;
 
-		FLAMPpref.get("hamcast_mode_selection_4", i, hamcast_mode_selection_4);
+		FLIMGpref.get("hamcast_mode_selection_4", i, hamcast_mode_selection_4);
 		hamcast_mode_selection_4 = i;
 
-		FLAMPpref.get("auto_rx_save", i, auto_rx_save);
+		FLIMGpref.get("auto_rx_save", i, auto_rx_save);
 		auto_rx_save = (bool) i;
 
-		FLAMPpref.get("auto_rx_save_local_time", i, auto_rx_save_local_time);
+		FLIMGpref.get("auto_rx_save_local_time", i, auto_rx_save_local_time);
 		auto_rx_save_local_time = (bool) i;
 
 		if(auto_load_queue_path.size() < 1)

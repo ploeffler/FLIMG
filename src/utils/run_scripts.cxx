@@ -1,7 +1,7 @@
 /** **************************************************************
  \page run_scripts Executing Script Parsing Class
 
- \par run_script.cxx (FLAMP)
+ \par run_script.cxx (FLIMG)
 
  \par Author(s):
  Robert Stiles, KK5VD, Copyright &copy; 2014
@@ -59,9 +59,9 @@
 //#include <FL/Fl_Native_File_Chooser.H>
 #include <FL/Fl_File_Chooser.H>
 
-#include "flamp.h"
+#include "flimg.h"
 #include "amp.h"
-#include "flamp_dialog.h"
+#include "flimg_dialog.h"
 
 #include "debug.h"
 #include "util.h"
@@ -83,7 +83,7 @@
 #include "fileselect.h"
 
 #ifdef WIN32
-#  include "flamprc.h"
+#  include "flimgrc.h"
 #  include "compat.h"
 #endif
 
@@ -106,8 +106,8 @@ pthread_mutex_t mutex_script_io = PTHREAD_MUTEX_INITIALIZER;
 extern const char *s_basic_modes[];
 extern const char *event_types[];
 
-extern std::string flamp_script_dir;
-extern std::string flamp_script_default_dir;
+extern std::string flimg_script_dir;
+extern std::string flimg_script_default_dir;
 
 extern void addfile(ScriptParsing *sp, SCRIPT_COMMANDS *sc);
 extern void auto_load_tx_queue_from_tx_directory(void);
@@ -847,13 +847,13 @@ static int process_reset(ScriptParsing *sp, SCRIPT_COMMANDS *sc)
 			btn_enable_txrx_interval->value(false);
 			progStatus.use_txrx_interval = false;
 
-			sp->sync_with_flamp(false);
-			btn_sync_mode_flamp_fldigi->value(false);
-			progStatus.sync_mode_flamp_fldigi = false;
+			sp->sync_with_flimg(false);
+			btn_sync_mode_flimg_fldigi->value(false);
+			progStatus.sync_mode_flimg_fldigi = false;
 
 			sp->sync_with_fldigi(false);
-			btn_sync_mode_fldigi_flamp->value(false);
-			progStatus.sync_mode_fldigi_flamp = false;
+			btn_sync_mode_fldigi_flimg->value(false);
+			progStatus.sync_mode_fldigi_flimg = false;
 
 			sp->sync_with_prior(false);
 			btn_fldigi_xmt_mode_change->value(false);
@@ -966,7 +966,7 @@ static int process_rx_interval(ScriptParsing *sp, SCRIPT_COMMANDS *sc)
 }
 
 /** ********************************************************
- * \brief Set the sync modes between FLAMP and FLDIGI
+ * \brief Set the sync modes between FLIMG and FLDIGI
  * \param sp Access to ScritpParsing members.
  * \param sc Access to SCRIPT_COMMANDS structure variables.
  * \return 0 (no error) Other (error)
@@ -986,16 +986,16 @@ static int process_sync_with(ScriptParsing *sp, SCRIPT_COMMANDS *sc)
 		str[i] = toupper(str[i]);
 
 	if(strncmp(str.c_str(), "FLDIGI", 6) == 0) {
-		btn_sync_mode_flamp_fldigi->value(sp->sync_with_fldigi());
-		progStatus.sync_mode_flamp_fldigi = sp->sync_with_fldigi();
-		btn_sync_mode_flamp_fldigi->do_callback();
+		btn_sync_mode_flimg_fldigi->value(sp->sync_with_fldigi());
+		progStatus.sync_mode_flimg_fldigi = sp->sync_with_fldigi();
+		btn_sync_mode_flimg_fldigi->do_callback();
 		return 0;
 	}
 
-	if(strncmp(str.c_str(), "FLAMP", 5) == 0) {
-		btn_sync_mode_fldigi_flamp->value(sp->sync_with_flamp());
-		progStatus.sync_mode_fldigi_flamp = sp->sync_with_flamp();
-		btn_sync_mode_fldigi_flamp->do_callback();
+	if(strncmp(str.c_str(), "FLIMG", 5) == 0) {
+		btn_sync_mode_fldigi_flimg->value(sp->sync_with_flimg());
+		progStatus.sync_mode_fldigi_flimg = sp->sync_with_flimg();
+		btn_sync_mode_fldigi_flimg->do_callback();
 		return 0;
 	}
 
@@ -1181,7 +1181,7 @@ void cb_scripts(bool reset_path = false)
 
 	if(reset_path || first_time) {
 		memset(script_filename, 0, sizeof(script_filename));
-		strncpy(script_filename, flamp_script_dir.c_str(), FL_PATH_MAX);
+		strncpy(script_filename, flimg_script_dir.c_str(), FL_PATH_MAX);
 		int len = strnlen(script_filename, FL_PATH_MAX);
 
 		if(len > 0) {

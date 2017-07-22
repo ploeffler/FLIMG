@@ -27,13 +27,13 @@
 
 /*!
 
-\mainpage FLAMP Amateur Multicast Protocol (AMP-2) - Version 3.0
+\mainpage FLIMG Amateur Multicast Protocol (AMP-2) - Version 3.0
 
 \tableofcontents
 
 <center>
-\image html flampLogo.png ""
-\image latex flampLogo.png "" width=2.5in
+\image html flimgLogo.png ""
+\image latex flimgLogo.png "" width=2.5in
 </center>
 
 \section authors Authors - Version History
@@ -115,7 +115,7 @@ represent actual crc values.
 	<li> <b>Checksum</b> - The checksum is used by the receiving station to
 	     determine the accuracy of the received data. It is a 16 bit
 	     cycle redundancy check (Crc16) value.  Crc16 C++ code is found
-	     in source file crc16.h associated with the application flamp.
+	     in source file crc16.h associated with the application flimg.
 	     The CS value is always transmitted as a 4 character hex string.
 	<li> <b>HASH</b> - 4 character hexadecimal number that is the Crc16 value
 	     associated with a concatenated string which consists of the
@@ -270,7 +270,7 @@ at the transfer destination.
 
 \verbatim
 QST DE KK5VD
-<PROG 18 E9CE>{0EE2}FLAMP X.X.X
+<PROG 18 E9CE>{0EE2}FLIMG X.X.X
 <FILE 28 13C7>{0EE2}20130323070339:Fox.txt
 <ID 29 DB98>{0EE2}KK5VD Madison AL EM64or
 <SIZE 16 8816>{0EE2}2080 22 96
@@ -299,7 +299,7 @@ available amateur radio transport layers (digital modem types).
 
 \verbatim
 QST DE KK5VD
-<PROG 18 E9CE>{0EE2}FLAMP X.X.X
+<PROG 18 E9CE>{0EE2}FLIMG X.X.X
 <FILE 28 13C7>{0EE2}20130323070339:Fox.txt
 <ID 29 DB98>{0EE2}KK5VD Madison AL EM64or
 <SIZE 14 B649>{0EE2}221 4 64
@@ -319,7 +319,7 @@ are shown as '-' or '=')
 
 \verbatim
 QST DE KK5VD
-<PROG 18 E9CE>{0EE2}FLAMP X.X.X
+<PROG 18 E9CE>{0EE2}FLIMG X.X.X
 <FILE 28 13C7>{0EE2}20130323070339:Fox.txt
 <ID 29 DB98>{0EE2}KK5VD Madison AL EM64or
 <SIZE 14 E7B2>{0EE2}195 4 64

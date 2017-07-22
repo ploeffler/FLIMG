@@ -3,7 +3,7 @@
 //
 // copyright 2012, W1HKJ
 //
-// This file is part of FLAMP.
+// This file is part of FLIMG.
 //
 // This is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -36,8 +36,8 @@
 #include <iostream>
 #include <errno.h>
 
-#include "flamp.h"
-#include "flamp_dialog.h"
+#include "flimg.h"
+#include "flimg_dialog.h"
 #include "xml_io.h"
 #include "XmlRpc.h"
 #include "status.h"
@@ -455,7 +455,7 @@ string get_char_rates()
 
 static void get_fldigi_modem()
 {
-	if (!progStatus.sync_mode_fldigi_flamp) return;
+	if (!progStatus.sync_mode_fldigi_flimg) return;
 
 	XmlRpcValue status;
 	XmlRpcValue query;

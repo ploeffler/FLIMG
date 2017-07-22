@@ -7,7 +7,7 @@
 static const char *copyright[] = {
 	" =====================================================================",
 	"",
-	" FLAMP "  VERSION, // flamp.cxx
+	" FLIMG "  VERSION, // flimg.cxx
 	"",
 	" Author(s):",
 	"    Robert Stiles, KK5VD, Copyright (C) 2013, 2014, 2015",
@@ -59,9 +59,9 @@ static const char *copyright[] = {
 #include <FL/Fl_Menu_Item.H>
 #include <FL/Fl_File_Icon.H>
 
-#include "flamp.h"
+#include "flimg.h"
 #include "amp.h"
-#include "flamp_dialog.h"
+#include "flimg_dialog.h"
 
 #include "debug.h"
 #include "util.h"
@@ -84,7 +84,7 @@ static const char *copyright[] = {
 #include "transmit_camp.h"
 
 #ifdef WIN32
-#  include "flamprc.h"
+#  include "flimgrc.h"
 #  include "compat.h"
 #endif
 
@@ -102,7 +102,7 @@ std::string tmp_buffer;
 
 const char *sz_flmsg = "<flmsg>";
 const char *sz_cmd = "<cmd>";
-const char *sz_flamp = "}FLAMP";
+const char *sz_flimg = "}FLIMG";
 
 TagSearch *cQue;
 
@@ -150,13 +150,13 @@ const char *options[] = {
 	"        contains spaces.",
 	"",
 	"  Unless the empty file NBEMS.DIR is found in the same folder as the",
-	"  flamp executable.  The existence of an empty file NBEMS.DIR forces",
-	"  the flamp-dir to be a placed in the same folder as the executable",
-	"  folder and named flamp.files (.flamp on Linux / OS X)",
+	"  flimg executable.  The existence of an empty file NBEMS.DIR forces",
+	"  the flimg-dir to be a placed in the same folder as the executable",
+	"  folder and named flimg.files (.flimg on Linux / OS X)",
 	"",
 	"  NBEMS.DIR may contain a single line specifying the absolute",
-	"  path-name of the flamp-dir.  If NBEMS.DIR is not empty then",
-	"  the specified path-name takes precedence over the --flamp-dir",
+	"  path-name of the flimg-dir.  If NBEMS.DIR is not empty then",
+	"  the specified path-name takes precedence over the --flimg-dir",
 	"  command line parameter.  The specified path-name must be a valid",
 	"  one for the operating system!  Enclosing \"'s are not required.",
 	"",
@@ -216,11 +216,11 @@ int file_io_errno = 0;
 std::string NBEMS_dir = "";
 std::string title = "";
 std::string BaseDir = "";
-std::string flampHomeDir = "";
-std::string flamp_rcv_dir = "";
-std::string flamp_xmt_dir = "";
-std::string flamp_script_dir = "";
-std::string flamp_script_default_dir = "";
+std::string flimgHomeDir = "";
+std::string flimg_rcv_dir = "";
+std::string flimg_xmt_dir = "";
+std::string flimg_script_dir = "";
+std::string flimg_script_default_dir = "";
 std::string buffer = "";
 
 std::string cmd_fname = "";
@@ -256,9 +256,9 @@ bool isbinary(string s)
 }
 
 #if !defined(__APPLE__) && !defined(__WOE32__) && USE_X
-Pixmap  flamp_icon_pixmap;
+Pixmap  flimg_icon_pixmap;
 
-#define KNAME "flamp"
+#define KNAME "flimg"
 
 /** ********************************************************
  *
@@ -673,10 +673,10 @@ void checkdirectories(void)
 
 	DIRS NBEMS_dirs[] = {
 		{ NBEMS_dir,      0,        0 },
-		{ flampHomeDir,     "FLAMP",	0 },
-		{ flamp_rcv_dir,    "FLAMP/rx",      0 },
-		{ flamp_xmt_dir,    "FLAMP/tx",      0 },
-		{ flamp_script_dir, "FLAMP/scripts",      0 },
+		{ flimgHomeDir,     "FLIMG",	0 },
+		{ flimg_rcv_dir,    "FLIMG/rx",      0 },
+		{ flimg_xmt_dir,    "FLIMG/tx",      0 },
+		{ flimg_script_dir, "FLIMG/scripts",      0 },
 	};
 
 	int r;
@@ -694,7 +694,7 @@ void checkdirectories(void)
 			NBEMS_dirs[i].new_dir_func();
 	}
 
-	flamp_script_default_dir.assign(flamp_script_dir);
+	flimg_script_default_dir.assign(flimg_script_dir);
 }
 
 /** ********************************************************
@@ -757,7 +757,7 @@ void addfile(ScriptParsing *sp, SCRIPT_COMMANDS *sc)
 			use_forced_comp_on_file = 1;
 		}
 
-		if(tx_buffer.find(sz_flamp) != std::string::npos) {
+		if(tx_buffer.find(sz_flimg) != std::string::npos) {
 			use_forced_comp_on_file = 1;
 		}
 	}
@@ -883,7 +883,7 @@ void addfile(std::string xmtfname, void *rx, bool useCompression, \
 		use_forced_comp_on_file = 1;
 	}
 
-	if(tx_buffer.find(sz_flamp) != std::string::npos) {
+	if(tx_buffer.find(sz_flimg) != std::string::npos) {
 		use_forced_comp_on_file = 1;
 	}
 
@@ -1070,12 +1070,12 @@ void auto_load_tx_queue_from_tx_directory(void)
 		return;
 	}
 
-	if(flamp_xmt_dir.size() < 1) return;
+	if(flimg_xmt_dir.size() < 1) return;
 
-	count = fl_filename_list(flamp_xmt_dir.c_str(), &list);
+	count = fl_filename_list(flimg_xmt_dir.c_str(), &list);
 
 	if (!count) {
-		LOG_INFO("%s directoy not found or empty", flamp_xmt_dir.c_str());
+		LOG_INFO("%s directoy not found or empty", flimg_xmt_dir.c_str());
 		fl_filename_free_list(&list, count);
 		return;
 	}
@@ -1093,7 +1093,7 @@ void auto_load_tx_queue_from_tx_directory(void)
 	for(index = 0; index < count; index++) {
 
 		memset(filepath, 0, FILENAME_MAX + 1);
-		strncpy(filepath, flamp_xmt_dir.c_str(), FILENAME_MAX);
+		strncpy(filepath, flimg_xmt_dir.c_str(), FILENAME_MAX);
 		strncat(filepath, list[index]->d_name, FILENAME_MAX);
 
 		if(stat((const char *) filepath, &stat_buf)) continue;
@@ -1168,7 +1168,7 @@ void auto_load_tx_queue_from_list(void)
 	char *eMsg     = (char *) "Memory Allocation Error";
 	char *eMsg2    = (char *) "First line in Queue List must be ";
 	char *eMsg3    = (char *) "TX Queue access in progress, Auto load aborted";
-	char *QueueTag = (char *) "FLAMPTXQUEUE";
+	char *QueueTag = (char *) "FLIMGTXQUEUE";
 
 	int size  = 0;
 	int i     = 0;
@@ -1351,7 +1351,7 @@ void readfile()
 {
 	string xmtfname;
 	xmtfname.clear();
-	xmtfname = flampHomeDir;
+	xmtfname = flimgHomeDir;
 	const char *p = FSEL::select(_("Open file"), "*.*",
 								 xmtfname.c_str());
 	if (!p) return;
@@ -1694,7 +1694,7 @@ void auto_rx_save_file(cAmp *_amp)
 				 ztime->tm_year + 1900, ztime->tm_mon + 1, ztime->tm_mday);
 	}
 
-	rx_directory.assign(flamp_rcv_dir);
+	rx_directory.assign(flimg_rcv_dir);
 
 	test_char = rx_directory[rx_directory.size() - 1];
 	if(test_char != PATH_CHAR_SEP)
@@ -1755,7 +1755,7 @@ void writefile(int xfrFlag)
 	std::string rx_directory;
 	std::string rx_fname;
 
-	rx_directory.assign(flamp_rcv_dir);
+	rx_directory.assign(flimg_rcv_dir);
 	rx_fname.assign(amp->get_rx_fname());
 
 	char test_char = rx_directory[rx_directory.size() - 1];
@@ -2655,7 +2655,7 @@ int main(int argc, char *argv[])
 		appdir.assign(dirbuf);
 
 #ifdef __WOE32__
-		size_t p = appdir.rfind("flamp.exe");
+		size_t p = appdir.rfind("flimg.exe");
 		appdir.erase(p);
 		p = appdir.find("FL_APPS/");
 		if (p != string::npos) {
@@ -2670,7 +2670,7 @@ int main(int argc, char *argv[])
 
 		fl_filename_absolute(dirbuf, sizeof(dirbuf), argv[0]);
 		appdir.assign(dirbuf);
-		size_t p = appdir.rfind("flamp");
+		size_t p = appdir.rfind("flimg");
 		if (p != string::npos)
 			appdir.erase(p);
 		p = appdir.find("FL_APPS/");
@@ -2706,13 +2706,13 @@ int main(int argc, char *argv[])
 	checkdirectories();
 	progStatus.loadLastState();
 
-	string debug_file = flampHomeDir;
+	string debug_file = flimgHomeDir;
 	debug_file.append("debug_log.txt");
 	debug::start(debug_file.c_str());
 
 	LOG_INFO("Base dir: %s", NBEMS_dir.c_str());
 
-	main_window = flamp_dialog();
+	main_window = flimg_dialog();
 	main_window->resize( progStatus.mainX, progStatus.mainY, main_window->w(), main_window->h());
 	main_window->callback(exit_main);
 
@@ -2728,8 +2728,8 @@ int main(int argc, char *argv[])
 	main_window->icon((char*)LoadIcon(fl_display, MAKEINTRESOURCE(IDI_ICON)));
 	main_window->show (argc, argv);
 #elif !defined(__APPLE__)
-	make_pixmap(&flamp_icon_pixmap, flamp_icon);
-	main_window->icon((char *)flamp_icon_pixmap);
+	make_pixmap(&flimg_icon_pixmap, flimg_icon);
+	main_window->icon((char *)flimg_icon_pixmap);
 	main_window->show(argc, argv);
 #else
 	main_window->show(argc, argv);
@@ -2887,7 +2887,7 @@ void open_url(const char* url)
  ***********************************************************/
 void show_help()
 {
-	open_url("http://www.w1hkj.com/flamp-help/index.html");
+	open_url("http://www.w1hkj.com/flimg-help/index.html");
 }
 
 /** ********************************************************
@@ -2895,7 +2895,7 @@ void show_help()
  ***********************************************************/
 void cb_folders()
 {
-	open_url(flampHomeDir.c_str());
+	open_url(flimgHomeDir.c_str());
 }
 
 /** ********************************************************

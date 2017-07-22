@@ -1,5 +1,5 @@
-#ifndef FLAMP_CONFIG_H_
-#define FLAMP_CONFIG_H_
+#ifndef FLIMG_CONFIG_H_
+#define FLIMG_CONFIG_H_
 
 #endif
 

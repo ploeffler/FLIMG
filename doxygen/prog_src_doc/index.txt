@@ -1,5 +1,5 @@
 // =====================================================================
-//  FLAMP - Programmers Code Reference Doxygen Main Page Documentation
+//  FLIMG - Programmers Code Reference Doxygen Main Page Documentation
 //
 //  index.doc
 //
@@ -27,11 +27,11 @@
 
 /*!
 
-\mainpage FLAMP - Programmers Code Reference
+\mainpage FLIMG - Programmers Code Reference
 
 <center>
-\image html flampLogo.png ""
-\image latex flampLogo.png "" width=2.5in
+\image html flimgLogo.png ""
+\image latex flimgLogo.png "" width=2.5in
 </center>
 
 \section depLibs Dependency Libraries

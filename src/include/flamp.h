@@ -1,12 +1,12 @@
 // =====================================================================
 //
-// flamp.h
+// flimg.h
 //
 //  Author(s):
 //    Robert Stiles, KK5VD, Copyright (C) 2013
 //    Dave Freese, W1HKJ, Copyright (C) 2013
 //
-// This file is part of FLAMP.
+// This file is part of FLIMG.
 //
 // This is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -23,8 +23,8 @@
 //
 // =====================================================================
 
-#ifndef flamp_H
-#define flamp_H
+#ifndef flimg_H
+#define flimg_H
 
 #include <string>
 #include <vector>
@@ -61,8 +61,8 @@ typedef struct {
 
 void alt_receive_data_stream(void);
 
-extern const char *flamp_beg;
-extern const char *flamp_end;
+extern const char *flimg_beg;
+extern const char *flimg_end;
 
 extern Fl_Double_Window *mainwindow;
 extern Fl_Double_Window *optionswindow;
@@ -83,8 +83,8 @@ extern pthread_mutex_t mutex_xmlrpc;
 extern pthread_t *xmlrpc_thread;
 
 extern string buffer;
-extern string flamp_dir;
-extern string flampHomeDir;
+extern string flimg_dir;
+extern string flimgHomeDir;
 extern string title;
 
 extern bool do_events_flag;

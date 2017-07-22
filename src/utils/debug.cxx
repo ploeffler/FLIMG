@@ -5,7 +5,7 @@
 //              Stelios Bounanos, M0GLD, Dave Freese, W1HKJ
 //
 //
-// This file is part of FLAMP.
+// This file is part of FLIMG.
 //
 // This is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -47,7 +47,7 @@
 #include "debug.h"
 #include "icons.h"
 #include "gettext.h"
-#include "flamp.h"
+#include "flimg.h"
 
 using namespace std;
 
@@ -361,7 +361,7 @@ static void clear_cb(Fl_Widget* w, void*)
 static void save_cb(Fl_Widget* w, void*)
 {
 	if (!btext->size()) return;
-	string filename = flampHomeDir;
+	string filename = flimgHomeDir;
 	filename.append("events.txt");
 	ofstream out;
 	out.open(filename.c_str(), ios::app);

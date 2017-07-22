@@ -1,9 +1,9 @@
 [Desktop Entry]
-Name=flamp
+Name=flimg
 GenericName=Amateur Multicast Protocol Client/Server
 Comment=Amateur Radio Communications
-Exec=flamp
-Icon=flamp
+Exec=flimg
+Icon=flimg
 Terminal=false
 Type=Application
 Categories=Network;HamRadio;

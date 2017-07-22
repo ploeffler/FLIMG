@@ -5,7 +5,7 @@
 // Author(s):
 //  Copyright (C) 2014 Robert Stiles, KK5VD
 //
-// This file is part of FLAMP.
+// This file is part of FLIMG.
 //
 // This is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -58,8 +58,8 @@
 #include "flinput2.h"
 #include "status.h"
 #include "threads.h"
-#include "flamp.h"
-#include "flamp_dialog.h"
+#include "flimg.h"
+#include "flimg_dialog.h"
 #include "xml_io.h"
 #include "ztimer.h"
 
@@ -484,7 +484,7 @@ void *watch_dog_loop(void *p)
 }
 
 /** ********************************************************
- * \brief FLAMP event timer.
+ * \brief FLIMG event timer.
  * \param *first_call. if true initialzation occures. Otherwise, the
  * count down timer is reset.
  * \return void (nothing)

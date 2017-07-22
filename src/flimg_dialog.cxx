@@ -1,12 +1,12 @@
 // =====================================================================
 //
-// flamp_dialog.cxx
+// flimg_dialog.cxx
 //
 // Author(s):
 //	Dave Freese, W1HKJ, Copyright (C) 2010, 2011, 2012, 2013
 //  Robert Stiles, KK5VD, Copyright (C) 2013, 2014, 2015
 //
-// This file is part of FLAMP.
+// This file is part of FLIMG.
 //
 // This is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -26,9 +26,9 @@
 #include "config.h"
 
 #include "gettext.h"
-#include "flamp_dialog.h"
+#include "flimg_dialog.h"
 #include "status.h"
-#include "flamp.h"
+#include "flimg.h"
 #include "fileselect.h"
 #include "debug.h"
 #include "icons.h"
@@ -101,8 +101,8 @@ Fl_Check_Button * btn_auto_rx_save = 0;
 // Configuraton panel
 
 Fl_Check_Button * btn_fldigi_xmt_mode_change = 0;
-Fl_Check_Button * btn_sync_mode_flamp_fldigi = 0;
-Fl_Check_Button * btn_sync_mode_fldigi_flamp = 0;
+Fl_Check_Button * btn_sync_mode_flimg_fldigi = 0;
+Fl_Check_Button * btn_sync_mode_fldigi_flimg = 0;
 
 Fl_Check_Button * btn_disable_header_modem_on_block_fills = 0;
 Fl_Check_Button * btn_enable_header_modem  = 0;
@@ -182,7 +182,7 @@ extern void cb_scripts_in_main_thread(void *);
  * compared to a supplied list from FLDIGI via XMLRPC
  * command. And matches entries available in the
  * time_table.cxx structure. No, you can not remove this list
- * and use the one in the time_table.cxx. As FLAMP generates
+ * and use the one in the time_table.cxx. As FLIMG generates
  * this table using the --time-table command line switch.
  ***********************************************************/
 const char *s_basic_modes[] = {
@@ -390,7 +390,7 @@ void cb_cbo_modes(void *a, void *b)
 	g_modem.assign(cbo_modes->value());
 	update_cAmp_changes(0);
 	amp_mark_all_for_update();
-	if (progStatus.sync_mode_flamp_fldigi)
+	if (progStatus.sync_mode_flimg_fldigi)
 		send_new_modem(cbo_modes->value());
 	show_selected_xmt(0);
 }
@@ -452,7 +452,7 @@ void cb_mnuAbout(void *, void *)
 				"\tAuthors:\n" \
 				"\t\tDave Freese, W1HKJ\n" \
 				"\t\tRobert Stiles, KK5VD",
-				FLAMP_VERSION);
+				FLIMG_VERSION);
 }
 
 /** ********************************************************
@@ -760,17 +760,17 @@ void init_encoders()
 /** ********************************************************
  *
  ***********************************************************/
-void cb_sync_mode_flamp_fldigi(Fl_Check_Button *b, void *)
+void cb_sync_mode_flimg_fldigi(Fl_Check_Button *b, void *)
 {
-	progStatus.sync_mode_flamp_fldigi = btn_sync_mode_flamp_fldigi->value();
+	progStatus.sync_mode_flimg_fldigi = btn_sync_mode_flimg_fldigi->value();
 }
 
 /** ********************************************************
  *
  ***********************************************************/
-void cb_sync_mode_fldigi_flamp(Fl_Check_Button *b, void *)
+void cb_sync_mode_fldigi_flimg(Fl_Check_Button *b, void *)
 {
-	progStatus.sync_mode_fldigi_flamp = btn_sync_mode_fldigi_flamp->value();
+	progStatus.sync_mode_fldigi_flimg = btn_sync_mode_fldigi_flimg->value();
 }
 
 /** ********************************************************
@@ -1198,7 +1198,7 @@ void cb_auto_rx_save_local_time(Fl_Check_Button *a, void *b)
 /** ********************************************************
  *
  ***********************************************************/
-Fl_Double_Window* flamp_dialog() {
+Fl_Double_Window* flimg_dialog() {
 
 	int W = 500, H = 496;
 	int X = 2, Y = 26;
@@ -1504,7 +1504,7 @@ Fl_Double_Window* flamp_dialog() {
 	std::string message = "\tTimed / Continuous events :\n" \
 						  "\tEach transmission is identical to a 'Xmt All' (The entire\n" \
 						  "\tqueue is transmitted).  The unproto 'QST (calls) de URCALL'\n" \
-						  "\tand the program identifier '<PROG 11 8E48>FLAMP 2.x.x' are\n" \
+						  "\tand the program identifier '<PROG 11 8E48>FLIMG 2.x.x' are\n" \
 						  "\tincluded.";
 
 	explain_events->value(_((char *) message.c_str()));
@@ -1746,21 +1746,21 @@ Fl_Double_Window* flamp_dialog() {
 	txt_tx_myinfo->callback((Fl_Callback*)cb_tx_myinfo);
 
 
-	btn_sync_mode_flamp_fldigi = new Fl_Check_Button(X+70, y+=32, 20, 20,
-													 _("Auto sync fldigi to flamp mode selector"));
-	btn_sync_mode_flamp_fldigi->tooltip("");
-	btn_sync_mode_flamp_fldigi->align(FL_ALIGN_RIGHT);
-	btn_sync_mode_flamp_fldigi->down_box(FL_DOWN_BOX);
-	btn_sync_mode_flamp_fldigi->callback((Fl_Callback*)cb_sync_mode_flamp_fldigi);
-	btn_sync_mode_flamp_fldigi->value(progStatus.sync_mode_flamp_fldigi);
+	btn_sync_mode_flimg_fldigi = new Fl_Check_Button(X+70, y+=32, 20, 20,
+													 _("Auto sync fldigi to flimg mode selector"));
+	btn_sync_mode_flimg_fldigi->tooltip("");
+	btn_sync_mode_flimg_fldigi->align(FL_ALIGN_RIGHT);
+	btn_sync_mode_flimg_fldigi->down_box(FL_DOWN_BOX);
+	btn_sync_mode_flimg_fldigi->callback((Fl_Callback*)cb_sync_mode_flimg_fldigi);
+	btn_sync_mode_flimg_fldigi->value(progStatus.sync_mode_flimg_fldigi);
 
-	btn_sync_mode_fldigi_flamp = new Fl_Check_Button(X+70, y+=26, 20, 20,
-													 _("Auto sync flamp to fldigi mode selector"));
-	btn_sync_mode_fldigi_flamp->tooltip("");
-	btn_sync_mode_fldigi_flamp->align(FL_ALIGN_RIGHT);
-	btn_sync_mode_fldigi_flamp->down_box(FL_DOWN_BOX);
-	btn_sync_mode_fldigi_flamp->callback((Fl_Callback*)cb_sync_mode_fldigi_flamp);
-	btn_sync_mode_fldigi_flamp->value(progStatus.sync_mode_fldigi_flamp);
+	btn_sync_mode_fldigi_flimg = new Fl_Check_Button(X+70, y+=26, 20, 20,
+													 _("Auto sync flimg to fldigi mode selector"));
+	btn_sync_mode_fldigi_flimg->tooltip("");
+	btn_sync_mode_fldigi_flimg->align(FL_ALIGN_RIGHT);
+	btn_sync_mode_fldigi_flimg->down_box(FL_DOWN_BOX);
+	btn_sync_mode_fldigi_flimg->callback((Fl_Callback*)cb_sync_mode_fldigi_flimg);
+	btn_sync_mode_fldigi_flimg->value(progStatus.sync_mode_fldigi_flimg);
 
 	btn_fldigi_xmt_mode_change = new Fl_Check_Button(X+70, y+=26, 20, 20,
 													 _("Change fldigi mode just prior to transmit"));
@@ -1822,7 +1822,7 @@ Fl_Double_Window* flamp_dialog() {
 
 
 	btn_enable_header_modem = new Fl_Check_Button(X+70, y+=26, 20, 20,
-												  _("Enable header modem (Sync flamp to fldigi ignored)"));
+												  _("Enable header modem (Sync flimg to fldigi ignored)"));
 	btn_enable_header_modem->tooltip("");
 	btn_enable_header_modem->align(FL_ALIGN_RIGHT);
 	btn_enable_header_modem->down_box(FL_DOWN_BOX);

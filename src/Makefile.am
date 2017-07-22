@@ -1,8 +1,8 @@
 # Copyright (c) 2008 Dave Freese, W1HKJ (w1hkj AT w1hkj DOT com)
 
-bin_PROGRAMS = flamp
+bin_PROGRAMS = flimg
 
-MINGW32_SRC = flamp-rc.rc include/flamprc.h \
+MINGW32_SRC = flimg-rc.rc include/flimgrc.h \
 	utils/mingw.c include/mingw.h include/compat.h \
 	utils/getsysinfo.c
 
@@ -33,45 +33,45 @@ XMLRPCPP_SRC = \
 	xmlrpcpp/XmlRpcValue.h
 
 # We distribute these but do not always compile them
-EXTRA_flamp_SOURCES = $(FLRIG_WIN32_RES_SRC) $(MINGW32_SRC) $(XMLRPCPP_SRC)
+EXTRA_flimg_SOURCES = $(FLRIG_WIN32_RES_SRC) $(MINGW32_SRC) $(XMLRPCPP_SRC)
 
-flamp_SOURCES =
+flimg_SOURCES =
 
 if !ENABLE_FLXMLRPC
-  flamp_SOURCES += $(XMLRPCPP_SRC)
-  flamp_CPPFLAGS = @FLAMP_BUILD_CPPFLAGS@
-  flamp_CXXFLAGS = @FLAMP_BUILD_CXXFLAGS@
-  flamp_CFLAGS = $(flamp_CXXFLAGS)
-  flamp_LDFLAGS = @FLAMP_BUILD_LDFLAGS@
-  flamp_LDADD = @FLAMP_BUILD_LDADD@
+  flimg_SOURCES += $(XMLRPCPP_SRC)
+  flimg_CPPFLAGS = @FLIMG_BUILD_CPPFLAGS@
+  flimg_CXXFLAGS = @FLIMG_BUILD_CXXFLAGS@
+  flimg_CFLAGS = $(flimg_CXXFLAGS)
+  flimg_LDFLAGS = @FLIMG_BUILD_LDFLAGS@
+  flimg_LDADD = @FLIMG_BUILD_LDADD@
 else
-  flamp_CPPFLAGS = @FLAMP_BUILD_CPPFLAGS@ @FLXMLRPC_CFLAGS@
-  flamp_CXXFLAGS = @FLAMP_BUILD_CXXFLAGS@ @FLXMLRPC_CFLAGS@
-  flamp_CFLAGS = $(flamp_CXXFLAGS)
-  flamp_LDFLAGS = @FLAMP_BUILD_LDFLAGS@ @FLXMLRPC_LIBS@
-  flamp_LDADD = @FLAMP_BUILD_LDADD@
+  flimg_CPPFLAGS = @FLIMG_BUILD_CPPFLAGS@ @FLXMLRPC_CFLAGS@
+  flimg_CXXFLAGS = @FLIMG_BUILD_CXXFLAGS@ @FLXMLRPC_CFLAGS@
+  flimg_CFLAGS = $(flimg_CXXFLAGS)
+  flimg_LDFLAGS = @FLIMG_BUILD_LDFLAGS@ @FLXMLRPC_LIBS@
+  flimg_LDADD = @FLIMG_BUILD_LDADD@
 endif
 
 if MINGW32
 if HAVE_WINDRES
-  flamp_SOURCES += $(MINGW32_SRC)
+  flimg_SOURCES += $(MINGW32_SRC)
 endif
 endif
 
 ########################################################################
 
 
-flamp_VERSION_MAJOR = @FLAMP_VERSION_MAJOR@
-flamp_VERSION_MINOR = @FLAMP_VERSION_MINOR@
-flamp_VERSION_PATCH = @FLAMP_VERSION_PATCH@
-flamp_VERSION = @FLAMP_VERSION@
+flimg_VERSION_MAJOR = @FLIMG_VERSION_MAJOR@
+flimg_VERSION_MINOR = @FLIMG_VERSION_MINOR@
+flimg_VERSION_PATCH = @FLIMG_VERSION_PATCH@
+flimg_VERSION = @FLIMG_VERSION@
 
 .EXPORT_ALL_VARIABLES: nsisinst appbundle
 
 # Sources that are generated,
 BUILT_SOURCES =
 # not distributed,
-nodist_flamp_SOURCES = $(BUILT_SOURCES)
+nodist_flimg_SOURCES = $(BUILT_SOURCES)
 # and deleted by the clean targets
 CLEANFILES = $(BUILT_SOURCES)
 CLEAN_LOCAL =
@@ -84,20 +84,20 @@ endif
 endif
 
 install-data-local:
-	if test -f ../data/flamp.xpm; then \
+	if test -f ../data/flimg.xpm; then \
 	    $(mkinstalldirs) $(DESTDIR)/$(datadir)/pixmaps; \
-	    $(INSTALL_DATA) ../data/flamp.xpm $(DESTDIR)/$(datadir)/pixmaps; \
+	    $(INSTALL_DATA) ../data/flimg.xpm $(DESTDIR)/$(datadir)/pixmaps; \
 	fi
-	if test -f ../data/flamp.desktop; then \
+	if test -f ../data/flimg.desktop; then \
 	    $(mkinstalldirs) $(DESTDIR)/$(datadir)/applications; \
-	    $(INSTALL_DATA) ../data/flamp.desktop $(DESTDIR)/$(datadir)/applications; \
+	    $(INSTALL_DATA) ../data/flimg.desktop $(DESTDIR)/$(datadir)/applications; \
 	fi
 
 uninstall-local:
-	rm -f $(DESTDIR)/$(datadir)/pixmaps/flamp.xpm
-	rm -f $(DESTDIR)/$(datadir)/applications/flamp.desktop
+	rm -f $(DESTDIR)/$(datadir)/pixmaps/flimg.xpm
+	rm -f $(DESTDIR)/$(datadir)/applications/flimg.desktop
 
-# FL_SRC = flamp_dialog.fl
+# FL_SRC = flimg_dialog.fl
 
 if HAVE_FLUID
 flgen: $(FL_SRC)
@@ -111,8 +111,8 @@ flgen: $(FL_SRC)
 endif
 
 
-INSTALLER_FILE = flamp-$(flamp_VERSION)_setup.exe
-APPBUNDLE=flamp-$(flamp_VERSION)
+INSTALLER_FILE = flimg-$(flimg_VERSION)_setup.exe
+APPBUNDLE=flimg-$(flimg_VERSION)
 APPBUNDLE_NOLIBS=$(APPBUNDLE)-nolibs
 
 if HAVE_NSIS
@@ -131,9 +131,9 @@ clean-local:
 	-rm -rf $(CLEAN_LOCAL)
 
 # Sources that we build. It is OK to have headers here.
-flamp_SOURCES += \
-	flamp.cxx \
-	flamp_dialog.cxx \
+flimg_SOURCES += \
+	flimg.cxx \
+	flimg_dialog.cxx \
 	lzma/Alloc.h \
 	lzma/Alloc.c \
 	lzma/LzFind.c \
@@ -206,15 +206,15 @@ EXTRA_DIST = \
 	include/fileselect.h \
 	include/fl_lock.h \
 	include/flmisc.h \
-	include/flamp_config.h \
-	include/flamprc.h \
+	include/flimg_config.h \
+	include/flimgrc.h \
 	include/flinput2.h \
 	include/flslider2.h \
 	include/font_browser.h \
 	include/gettext.h \
 	include/icons.h \
-	include/flamp.h \
-	include/flamp_dialog.h \
+	include/flimg.h \
+	include/flimg_dialog.h \
 	include/missing_strings.h \
 	include/socket.h \
 	include/mingw.h \
@@ -244,21 +244,21 @@ EXTRA_DIST = \
 # Additional non-source files that are distributed
 #EXTRA_DIST += \
 #	../data/template.rtf
-#	../flamp-doc/flamp-quick-guide.html
+#	../flimg-doc/flimg-quick-guide.html
 
 # Additional source files that support non-Linux cross compilation
 EXTRA_DIST += \
 	../ChangeLog \
-	../data/flamp.desktop \
-	../data/flamp.xpm \
-	../data/flamp.png \
+	../data/flimg.desktop \
+	../data/flimg.xpm \
+	../data/flimg.png \
 	../data/win32/fl_app.nsi \
-	../data/win32/flamp.ico \
+	../data/win32/flimg.ico \
 	../scripts/buildmxe.sh \
 	../scripts/builddist.sh \
 	../scripts/mkappbundle.sh \
 	../scripts/mknsisinst.sh \
 	../data/mac/Info.plist.in \
-	../data/mac/flamp.icns \
-	$(flamp_WIN32_SRC) \
-	$(flamp_FL_SRC)
+	../data/mac/flimg.icns \
+	$(flimg_WIN32_SRC) \
+	$(flimg_FL_SRC)

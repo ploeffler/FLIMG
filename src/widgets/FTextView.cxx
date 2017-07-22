@@ -7,7 +7,7 @@
 // Copyright (C) 2008-2009
 //              Dave Freese, W1HKJ
 //
-// This file is part of FLAMP.
+// This file is part of FLIMG.
 //
 // This is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by

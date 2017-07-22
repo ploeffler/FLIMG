@@ -54,7 +54,7 @@
 
 extern const char *sz_flmsg;
 extern const char *sz_cmd;
-extern const char *sz_flamp;
+extern const char *sz_flimg;
 extern void preamble_detected(void);
 
 //! @struct relay_data

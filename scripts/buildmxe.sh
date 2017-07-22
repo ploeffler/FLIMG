@@ -10,6 +10,6 @@
 
 make
 
-$PREFIX/bin/i686-w64-mingw32.static-strip src/flamp.exe
+$PREFIX/bin/i686-w64-mingw32.static-strip src/flimg.exe
 make nsisinst
 mv src/*setup*exe .

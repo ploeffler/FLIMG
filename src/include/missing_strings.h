@@ -6,7 +6,7 @@
  *
  * Copyright 1998-2005 by Bill Spitzak and others.
  *
- // This file is part of FLAMP.
+ // This file is part of FLIMG.
  //
  // This is free software; you can redistribute it and/or modify
  // it under the terms of the GNU General Public License as published by
@@ -33,7 +33,7 @@
 #include <config.h>
 
 // versions of FLTK < 1.3.2 do not contain fl_string
-#if (FLAMP_FLTK_API_MAJOR == 1 && FLAMP_FLTK_API_MINOR == 3 && FLAMP_FLTK_API_PATCH < 1)
+#if (FLIMG_FLTK_API_MAJOR == 1 && FLIMG_FLTK_API_MINOR == 3 && FLIMG_FLTK_API_PATCH < 1)
 
 #  include <FL/Fl_Export.H>
 #  include <config.h>

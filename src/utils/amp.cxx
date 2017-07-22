@@ -5,7 +5,7 @@
 //	Dave Freese, W1HKJ, Copyright (C) 2010, 2011, 2012, 2013
 //	Robert Stiles, KK5VD, Copyright (C) 2013
 //
-// This file is part of FLAMP.
+// This file is part of FLIMG.
 //
 // This is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -1376,7 +1376,7 @@ std::string cAmp::tx_relay_string(std::string callfrom, std::string missing_bloc
 	xmtstring.clear();
 
 	callto_from.assign("\nDE ").append(callfrom).append("\n");
-	callto_from.append("\nFLAMP Relay\n\n");
+	callto_from.append("\nFLIMG Relay\n\n");
 
 	blocks = reformat_missing_blocks(missing_blocks);
 
@@ -1527,7 +1527,7 @@ int cAmp::tx_relay_vector(std::string callfrom, std::string missing_blocks)
 	data_string_array.clear();
 
 	callto_from.assign("\nDE ").append(callfrom).append("\n");
-	callto_from.append("\nFLAMP Relay\n\n");
+	callto_from.append("\nFLIMG Relay\n\n");
 	data_string_array.push_back(callto_from);
 
 	blocks = reformat_missing_blocks(missing_blocks);

@@ -1,5 +1,5 @@
 //======================================================================
-//	script_parsing.h  (FLAMP)
+//	script_parsing.h  (FLIMG)
 //
 //  Author(s):
 //
@@ -31,7 +31,7 @@
 #define MAX_READLINE_LENGTH (FILENAME_MAX+FILENAME_MAX)
 #define MAX_SUB_SCRIPTS 5
 
-#define SCRIPT_FILE_TAG ((char *)"FLAMP_CONFIG")
+#define SCRIPT_FILE_TAG ((char *)"FLIMG_CONFIG")
 #define CALL_MEMBER_FN(object,ptrToMember)  ((object).*(ptrToMember))
 
 #define RESET_ALL 0x01
@@ -193,10 +193,10 @@ private:
 	bool _interval;                 //!< Enable/Disable interval timer.
 	bool _load_txdir;               //!< Enable/Disable loading of the queue from the tx directory.
 	bool _proto;                    //!< Enable/Disable AMP protocol
-	bool _sync_with_flamp;          //!< Enable/Disable Sync fldigi with flamp
-	bool _sync_with_fldigi;         //!< Enable/Disable Sync flamp with fldigi
+	bool _sync_with_flimg;          //!< Enable/Disable Sync fldigi with flimg
+	bool _sync_with_fldigi;         //!< Enable/Disable Sync flimg with fldigi
 	bool _sync_with_prior;          //!< Enable/Disable Modem set prior to transmit.
-	bool _tx_report;                //!< Enable/Disable tramsmit reports from FLAMP.
+	bool _tx_report;                //!< Enable/Disable tramsmit reports from FLIMG.
 	bool _unproto_markers;          //!< Enable/Disable unproto makers during transmition of unproto data.
 	bool _warn_user;                //!< Enable/Disable Warning message when removing files from the transmit queue.
 
@@ -366,8 +366,8 @@ public:
 	int rx_interval(void) { return _rx_interval; }
 	void rx_interval(int value) { _rx_interval = value; }
 
-	bool sync_with_flamp(void) { return _sync_with_flamp; }
-	void sync_with_flamp(bool value) { _sync_with_flamp = value; }
+	bool sync_with_flimg(void) { return _sync_with_flimg; }
+	void sync_with_flimg(bool value) { _sync_with_flimg = value; }
 
 	bool sync_with_fldigi(void) { return _sync_with_fldigi; }
 	void sync_with_fldigi(bool value) { _sync_with_fldigi = value; }

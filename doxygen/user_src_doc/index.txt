@@ -17,22 +17,22 @@
 
 /*!
 
-\mainpage FLAMP Users Manual - Version 2.2
+\mainpage FLIMG Users Manual - Version 2.2
 
 <center>
-\image latex flampLogo.png "" width=2.0in
-\image html flampLogo.png ""
+\image latex flimgLogo.png "" width=2.0in
+\image html flimgLogo.png ""
 </center>
 
 \tableofcontents
 
-<!--FLAMP User Manual-->
-\section flampDesc FLAMP Description
+<!--FLIMG User Manual-->
+\section flimgDesc FLIMG Description
 
-<b>Notice</b>: This version of FLAMP is not compatible with version 1.x.x
+<b>Notice</b>: This version of FLIMG is not compatible with version 1.x.x
 <br>
 
-<b>FLAMP</b> is a program for AMP or Amateur Multicast Protocol. An FLAMP
+<b>FLIMG</b> is a program for AMP or Amateur Multicast Protocol. An FLIMG
 session will transmit one or more files with one or more iterations of the
 transmission. Each file is broken into blocks, each of which has a check sum.
 The receiving station saves the blocks that pass check sum. Successive
@@ -40,7 +40,7 @@ transmissions will fill in the missing blocks provided that the new blocks
 pass the check sum. After the transmission sequence, the entire file is
 assembled and may be saved. “Fills” may be provided by retransmitting the
 entire file or by the sending station only sending the missing blocks.
-Start by downloading the current version of FLAMP from
+Start by downloading the current version of FLIMG from
 <a href="http://www.w1hkj.com/download.html">w1hkj's website</a>. Install
 the software as you would any of the NBEMS applications. You should also
 uninstall any older or development versions.
@@ -50,7 +50,7 @@ uninstall any older or development versions.
 \image latex ConfigurePanel.png "Configure Panel" width=3.5in
 \image html ConfigurePanel.png "Configure Panel"
 
-When you open FLAMP you will see a screen with four tabs, Receive, Transmit,
+When you open FLIMG you will see a screen with four tabs, Receive, Transmit,
 Events and Configure. Click on the Configure tab and fill in your call sign
 and relevant information as shown. There are other options which will be
 covered later.
@@ -64,11 +64,11 @@ See \ref scripting_page for full details.
 \image latex TransmitPanel.png "Transmit Panel" width=3.5in
 \image html TransmitPanel.png "Transmit Panel"
 
-FLAMP divides a message file into blocks, each of which will be checked for
+FLIMG divides a message file into blocks, each of which will be checked for
 errors when received. You can select the block size with the Blk size
 selector. The range is from 16 to 2048 in increments of 16.
 
-FLAMP will repeat the transmission from 1 to 10 times with an option of
+FLIMG will repeat the transmission from 1 to 10 times with an option of
 repeating the header data independently. Select the appropriate number
 based on transmission mode (i.e. mode performance) and propagation
 conditions.
@@ -77,7 +77,7 @@ File identification is derived from multiple sources of information.
 These include date and time of the last file modification, compression,
 base encoding, and block size. Therefore, additional transmission sequences
 may be performed if necessary as long as these settings are not changed.
-If these settings are modified, FLAMP will treat the file as a new transmit
+If these settings are modified, FLIMG will treat the file as a new transmit
 queue item.
 
 On the "Send to" line you may add any specific recipients for the file.
@@ -86,7 +86,7 @@ may not be appropriate in some countries.
 
 To send a file, it has to be added to the queue. Click Add and then browse
 for the file or you can drag and drop the file from your desktop to the
-DnD icon (one or more files). FLAMP will handle any file format.
+DnD icon (one or more files). FLIMG will handle any file format.
 
 You have the option to compress the file with the Comp check box and select
 the level of encoding: base-64, base-128, or base-256. A warning dialog
@@ -96,12 +96,12 @@ high bit set bytes, etc).  Compression, base encoding, and description
 fields are a per file configurable item.
 
 <b>Note:</b>    In some circumstances depending on the contents of a file.
-FLAMP will automatically enable compression.   Disabling compression on
-these files(s) may have unintended effects between FLAMP and FLDIGI.  It
+FLIMG will automatically enable compression.   Disabling compression on
+these files(s) may have unintended effects between FLIMG and FLDIGI.  It
 is strongly suggested that compression remain enabled in these cases.
 The blocks line and Fetch button will be discussed later.
 
-FLAMP provides some additional information. When you select the
+FLIMG provides some additional information. When you select the
 compression/no compression option and the mode you will see the file size,
 number of blocks and estimated transmission time. This is useful for
 determining trade offs in terms of mode, repeats, compression and block
@@ -164,7 +164,7 @@ modem and block size used.
 \image html ChangeFldigiOnTx.png "Change Modem on Transmit"
 
 Enabling TX/RX Interval requires Change FLDIGI mode just prior to transmit
-activation.  This ensure the transmit duration is correct for the FLAMP
+activation.  This ensure the transmit duration is correct for the FLIMG
 selected modem (software controlled).    This feature is user controlled
 when Enable TX/RX interval is disabled.
 
@@ -180,10 +180,10 @@ Disabled leaves the Fetch text field unaltered.
 \image html EnableUnproto.png "Enable Unproto"
 
 Enable Transmit Unproto allows for the transmission of plain text without
-FLAMP control codes and checksum values.  This mode restricts the data
+FLIMG control codes and checksum values.  This mode restricts the data
 to 7 bit ASCII.  Any file that contains control characters and/or binary
 (upper bit set) will be removed and the remaining 7 bit ASCII data will be
-transmitted.  FLAMP will not be able to receive this data as it lacks the
+transmitted.  FLIMG will not be able to receive this data as it lacks the
 necessary control information.
 
 \image latex unprotoTransmitPanel.png "Unproto Widget Deactivation" width=3.5in
@@ -212,34 +212,34 @@ NOTICE: Command Character Substitution!
 When using Transmit/Receive Interval option there is a possibility of a
 block segment transmit time will exceed the interval transmit time.
 If this condition occurs a warning dialog box will be displayed listing
-the options required to correct the condition.  FLAMP will not transmit
+the options required to correct the condition.  FLIMG will not transmit
 until this condition is resolved.
 
-\section modeSync Mode Synchronization: FLDIGI to/from FLAMP
+\section modeSync Mode Synchronization: FLDIGI to/from FLIMG
 
-FLAMP and FLDIGI have the capability to synchronize modes, i.e. you only
+FLIMG and FLDIGI have the capability to synchronize modes, i.e. you only
 have to set the mode on one or the other and the second will follow. This
 feature may also be disabled so that the mode being used with FLDIGI at a
-given moment can be independent of the mode being used for FLAMP file
+given moment can be independent of the mode being used for FLIMG file
 transfers.
 
 \image latex ConfigurePanel.png "Configure Panel" width=3.5in
 \image html ConfigurePanel.png "Configure Panel"
 
 On the Configure screen note the three top options as shown. The first
-option auto syncs FLDIGI to the mode selected on FLAMP. The second syncs
-FLAMP to the mode selected on FLDIGI. These two options are not mutually
+option auto syncs FLDIGI to the mode selected on FLIMG. The second syncs
+FLIMG to the mode selected on FLDIGI. These two options are not mutually
 exclusive: if the first two options are selected, the mode selection
 is bilateral.
 
 The third option will override the current FLDIGI mode (e.g. a keyboard
-mode such as Olivia 8/500) with the mode selected with FLAMP for file
+mode such as Olivia 8/500) with the mode selected with FLIMG for file
 transfers (e.g. one of the MT63 modes). The mode change will take place
 at the time of transmission.
 
 If none of the boxes is checked, there will be no synchronization.
 
-Before transmitting, an FLAMP compatible version of FLDIGI must be running
+Before transmitting, an FLIMG compatible version of FLDIGI must be running
 with the mode selected and frequency clear.
 
 \section rxProcedure Receive Procedure
@@ -247,9 +247,9 @@ with the mode selected and frequency clear.
 \image latex ReceivePanelEmpty.png "Receive Panel" width=3.5in
 \image html ReceivePanelEmpty.png "Receive Panel"
 
-The receiving stations must have FLAMP open with FLDIGI running. FLDIGI
-will not “wake up” FLAMP as it does with, for example, FLMSG. However,
-more recent versions of FLDIGI sports the option of auto executing FLAMP
+The receiving stations must have FLIMG open with FLDIGI running. FLDIGI
+will not “wake up” FLIMG as it does with, for example, FLMSG. However,
+more recent versions of FLDIGI sports the option of auto executing FLIMG
 and other NBEMS tools. See FLDIGI user manual for details.
 
 The receive operation is hands-off. As the blocks are received the
@@ -274,10 +274,10 @@ file in the rx folder in the default directory:
 <center>
 | Operating System  | Folder/Directory                        |
 | :---------------: | :------------------------------------   |
-| Windows &dagger;  | C:\\Documents & Settings\\User\\flamp   |
-| Windows &dagger;  | C:\\Users\\User_login_name\\flamp.files |
-| Linux             | /home/user/.flamp                       |
-| Macintosh         | /Users/User_Login_Name/.flamp           |
+| Windows &dagger;  | C:\\Documents & Settings\\User\\flimg   |
+| Windows &dagger;  | C:\\Users\\User_login_name\\flimg.files |
+| Linux             | /home/user/.flimg                       |
+| Macintosh         | /Users/User_Login_Name/.flimg           |
 </center>
 <br>
 <b>Note:</b>
@@ -286,14 +286,14 @@ file in the rx folder in the default directory:
 The received file size is the actual file size, i.e. the actual bytes
 being transported (per repeat) less all of the Amp header information.
 
-The Send to information does not appear on the FLAMP screen. It will be seen
+The Send to information does not appear on the FLIMG screen. It will be seen
 in the FLDIGI RX panel as shown below:
 
 Data segments encoded in base64.
 
 \verbatim
 N0BDY DE S0MCAL
-<PROG 18 E9CE>{0EE2}FLAMP x.x.x
+<PROG 18 E9CE>{0EE2}FLIMG x.x.x
 <FILE 28 13C7>{0EE2}20130323070339:Fox.txt
 <ID 41 EEBC>{0EE2}S0MCAL Tesla's Lab Colorado Springs
 <SIZE 14 2F49>{0EE2}221 5 48
@@ -324,7 +324,7 @@ show the percent received. Nothing will appear in the Data panel.
 \image latex auto_save_rx.png "Receive Panel - Auto Save Option" width=1.5in
 \image html auto_save_rx.png "Receive Panel - Auto Save Option"
 
-When selected, all files that are received 100% are save in FLAMP's
+When selected, all files that are received 100% are save in FLIMG's
 "rx/" directory automatically. The saved file will be place in a sub-directory
 using a UTC date signature "rx/<DD_MM_YYYY_UTC>/".  This date corresponds to
 when the file was saved.
@@ -384,7 +384,7 @@ is necessary to ensure that there are no false reports received.
 \image html TxOnReport.png "Transmit on Report"
 
 Enable Tx on Report located in the Configuration panel allows the user to
-initiate transmit from FLAMP when mouse clicking on the "Report" button.
+initiate transmit from FLIMG when mouse clicking on the "Report" button.
 When disabled transmit function must be initiated from FLDIGI's T/R button.
 
 \section sendMissing Sending Missing Blocks/Header Information
@@ -394,7 +394,7 @@ When disabled transmit function must be initiated from FLDIGI's T/R button.
 
 For small files, another transmission of the complete file should suffice
 for fill-ins. In the case of a large file where only a few blocks are
-missing, FLAMP permits the sending station to just transmit the missing
+missing, FLIMG permits the sending station to just transmit the missing
 blocks.
 
 When the sender has received all of the block missing reports he or she
@@ -402,7 +402,7 @@ then retrieves the reports from FLDIGI by pressing the Fetch button. Any
 missing reports for the selected transmit queue item will be display in
 the blocks field.
 
-FLAMP parses all of the received data from one or more reporting stations.
+FLIMG parses all of the received data from one or more reporting stations.
 It combines them, discards duplicates and sorts the missing blocks
 numerically. It then updates the "blocks" entry control with the
 requested blocks.   Missing header information assigns '0' to the
@@ -424,7 +424,7 @@ missing reports will be transmitted, all others will be skipped. Pressing
 
 \section sAllowableFiles Allowable File Type Transfers
 
-FLAMP will send any file format. For example, ICS forms from FLMSG may be
+FLIMG will send any file format. For example, ICS forms from FLMSG may be
 sent as well as spreadsheets in CSV format or binary data such as image
 files.
 
@@ -467,7 +467,7 @@ enabled/disabled and time duration altered to the users requirements. Header
 Modem is not available for relay transmits. The modem used to transmit the
 data is the same as the one selected in the transmit panel.
 
-Once FLAMP has exited or the files removed from the receive queue the
+Once FLIMG has exited or the files removed from the receive queue the
 digipeat option for the those file(s) are lost.
 
 \image latex ReceiveQueueList.png "Receive Queue List" width=4.89in
@@ -525,7 +525,7 @@ digipeater functionality. For digipeat operations see \ref sRelayData
 
 \subsection timedevSched Timed Event Scheduler
 
-FLAMP can transmit the queued files on a specified interval, on a timed
+FLIMG can transmit the queued files on a specified interval, on a timed
 schedule or continuously. This is configured via the Events tab.
 
 \image latex EventTimedPanel.png "Event Panel" width=3.5in
@@ -572,7 +572,7 @@ based on 1-second intervals, which will result in a ~1 second silent
 period between transmissions.
 
 <b>Note:</b> Software will prevent the reloading of the Transmit queue via the
-Event panel if FLDIGI/FLAMP is transmitting. It's possible to miss a
+Event panel if FLDIGI/FLIMG is transmitting. It's possible to miss a
 later event if the previous data is still being transmitted.
 
 \subsection timeFormat Event Time Format
@@ -658,7 +658,7 @@ events in the Events Timed panel.
 
 Times listed are the total transmit time for the selected modem(s) only.
 Overall times are effected by interval timer, header modem, RSID, video
-text, carrier, and CW ID's generated by FLDIGI and/or FLAMP.
+text, carrier, and CW ID's generated by FLDIGI and/or FLIMG.
 
 <b>Note 1:</b> Deselecting all modems automatically disables "Enable modem
 rotation". To Enable "Enable Modem rotation" one or more "Enable modem
@@ -676,25 +676,25 @@ operations.
 \image latex DebugLog.png "Debug Log" width=3.5in
 \image html DebugLog.png "Debug Log"
 
-A Debug Log has been added to FLAMP for debugging purposes. It will
+A Debug Log has been added to FLIMG for debugging purposes. It will
 capture events such as failed headers, data blocks etc.   To access the
-Event Log, click Help – Events on the FLAMP screen.   The slider may be
+Event Log, click Help – Events on the FLIMG screen.   The slider may be
 used to select 5 levels of event capture: Quiet, Error, Warning, Info
 (default) and Debug.    The log may be saved. The saved log will be
-placed in the FLAMP folder.
+placed in the FLIMG folder.
 
 \section time_table Command Line Time Table Switch
 
 <h1>FOR DEVELOPERS ONLY</h1>
 
-Command line switch <code>\-\-time-table</code> repurposing FLAMP for
+Command line switch <code>\-\-time-table</code> repurposing FLIMG for
 creating mode time tables in 'C/C++' languages formatted syntax.
 
 <b>Note 1:</b> In order to use this FLDIGI must have the XMLRPC command
 'main.get_char_timing' available.
 
 <b>Note 2:</b> Ensure RSID, CWID, TONE transmit, Video Text, etc. are disabled
-in FLDIGI, and Interval Timer, Header Modem are disabled in FLAMP. The
+in FLDIGI, and Interval Timer, Header Modem are disabled in FLIMG. The
 waterfall in FLDIGI will be disabled to allow for high speed processing and
 will pause during the measurement process.
 
@@ -706,7 +706,7 @@ Two primary functions are available.
 	and continue to the end of the available modes. Selecting a file in the
 	transmit queue will be required for the operation to commence.</li>
 	<li>Selecting 'XMT ALL'<br> Initiates a table generation of all modes
-	available to FLAMP.</li>
+	available to FLIMG.</li>
 </ul>
 
 During the measurement process the software will print to the Debug Log
@@ -802,7 +802,7 @@ MODE_TIME_TABLE mode_time_table[] = {
 </ul>
 
 After the table has been integrated into the time_table.cxx source code and
-recompiled. Re-executing FLAMP without \-\-time-table command line switch
+recompiled. Re-executing FLIMG without \-\-time-table command line switch
 enables a transmit time indicator when the Debug Log window is set to 'Debug'
 level. Monitoring the transmit times can be used to determine the accuracy
 of the table.
@@ -838,10 +838,10 @@ ensure we don't excede the timeout period of Repeaters when
 \section arq_port_address Command Line ARQ/XML_IO Server/Port Switches
 
 User selectable ARQ/XML_IO Server/Port Command line switches.   In the event
-the user requires a second or more paired FLDIGI/FLAMP process for
+the user requires a second or more paired FLDIGI/FLIMG process for
 concurrent operation on another Transmitter/Receiver.  User will
 need to assign a common server address/port number between each
-paired FLDIGI/FLAMP programs.  It is recommend setting the PORT
+paired FLDIGI/FLIMG programs.  It is recommend setting the PORT
 parameters only for each ARQ/XML_IO interprocess communication switch.
 
 \verbatim
@@ -862,7 +862,7 @@ parameters only for each ARQ/XML_IO interprocess communication switch.
     The default is: 7322
 \endverbatim
 
-This bash script is an example to dedicate a FLDIGI/FLAMP pair for VHF
+This bash script is an example to dedicate a FLDIGI/FLIMG pair for VHF
 work.  User will be required to set the Audio in/out ports in the FLDIGI
 configuration panel to the radio designated for VHF work.
 
@@ -879,7 +879,7 @@ CMDS="-title VHF --arq-server-address 127.0.0.1 --XMLRPC-server-port 7363"
 
 FLDIGI $CMDS &
 sleep 4
-FLAMP $CMDS &
+FLIMG $CMDS &
 
 ---------------- End - Dont include this line
 \endverbatim
@@ -903,7 +903,7 @@ the screen captures is below.
 
 \verbatim
 N0BDY DE S0MCAL
-<PROG 18 E9CE>{0EE2}FLAMP x.x.x
+<PROG 18 E9CE>{0EE2}FLIMG x.x.x
 <FILE 28 13C7>{0EE2}20130323070339:Fox.txt
 <ID 41 EEBC>{0EE2}S0MCAL Tesla's Lab Colorado Springs
 <SIZE 14 2F49>{0EE2}221 5 48
@@ -950,7 +950,7 @@ issues that are not present in simplex communications.
 
 \subsection timeouts Repeater timeouts and resets
 
-From the FLAMP configuration panel.
+From the FLIMG configuration panel.
 
 <ol>
 	<li> Enable Interval Timer.
@@ -1025,8 +1025,8 @@ dictate.
 \subsection epsk_modems 8PSK Modem Availability
 FLDIGI 3.22.04 and 3.22.05 contain 8PSK1333, 8PSK1333F and 8PSK1200 modems
 that are no longer present in 3.22.06 and later releases.  The timing
-tables are still available in FLAMP 2.22.01+ and as a selectable option when
-transmitting. However, these modems will only be available in FLAMP if the
+tables are still available in FLIMG 2.22.01+ and as a selectable option when
+transmitting. However, these modems will only be available in FLIMG if the
 stated versions are used.
 
 */

@@ -1105,7 +1105,7 @@ const char *pskr_icon[] = {
 	"       .        "};
 
 /* XPM */
-const char * flamp_icon[] = {
+const char * flimg_icon[] = {
 	"64 64 215 2",
 	"  	c None",
 	". 	c #000000",

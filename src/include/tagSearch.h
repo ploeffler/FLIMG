@@ -5,7 +5,7 @@
 //	Robert Stiles, KK5VD, Copyright (C) 2013
 //	Dave Freese, W1HKJ, Copyright (C) 2013
 //
-// This file is part of FLAMP.
+// This file is part of FLIMG.
 //
 // This is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -22,8 +22,8 @@
 //
 //
 
-#ifndef flamp_tag_search_h
-#define flamp_tag_search_h
+#ifndef flimg_tag_search_h
+#define flimg_tag_search_h
 
 #include "circular_queue.h"
 #include "util.h"
@@ -87,4 +87,4 @@ public:
 
 };
 
-#endif // flamp_tag_search_h
+#endif // flimg_tag_search_h

@@ -1,7 +1,7 @@
 /** **************************************************************
  \page script_parsing Script Parsing Class
 
- \par script_parsing.cxx (FLAMP)
+ \par script_parsing.cxx (FLIMG)
 
  \par Author(s):
  Robert Stiles, KK5VD, Copyright &copy; 2014
@@ -687,7 +687,7 @@ void ScriptParsing::defaults(bool all)
 	_inhibit_header         = false;
 	_interval               = false;
 	_proto                  = true;
-	_sync_with_flamp        = false;
+	_sync_with_flimg        = false;
 	_sync_with_fldigi       = false;
 	_sync_with_prior        = false;
 	_tx_report              = false;
@@ -786,7 +786,7 @@ ScriptParsing::ScriptParsing()
 	_queue_path       = "";
 	_reset            = 0;
 	_rx_interval      = 0;
-	_sync_with_flamp  = false;
+	_sync_with_flimg  = false;
 	_sync_with_fldigi = false;
 	_sync_with_prior  = false;
 	_tx_interval      = 0;
@@ -866,7 +866,7 @@ int ScriptParsing::CopyScriptParsingEnv(ScriptParsing *src)
 	proto(src->proto());
 	reset(src->reset());
 	rx_interval(src->rx_interval());
-	sync_with_flamp(src->sync_with_flamp());
+	sync_with_flimg(src->sync_with_flimg());
 	sync_with_fldigi(src->sync_with_fldigi());
 	sync_with_prior(src->sync_with_prior());
 	tx_interval(src->tx_interval());
@@ -2127,16 +2127,16 @@ SCRIPT_CODES ScriptParsing::sc_rx_interval(struct script_cmds *cmd)
 }
 
 /** **************************************************************
- * \brief Modem sync method between FLAMP and FLDIGI
+ * \brief Modem sync method between FLIMG and FLDIGI
  * \param cmd Pointer to matching struct script_cmds script
  * command.
  * \return SCRIPT_CODES error see \ref script_codes
  * \par Script Command:<br>
  * <tt>\"SYNC WITH:\<mode\>,\<ON|OFF\>\"</tt><br>
  * \par Script Parameters:<br>
- * <tt>FLAMP  = FLDIGI Sync's with FLAMP</tt><br>
- * <tt>FLDIGI = FLAMP Sync's with FLDIGI</tt><br>
- * <tt>PRIOR  = Set FLDIGI to FLAMP's modem prior to transmitting data</tt>
+ * <tt>FLIMG  = FLDIGI Sync's with FLIMG</tt><br>
+ * <tt>FLDIGI = FLIMG Sync's with FLDIGI</tt><br>
+ * <tt>PRIOR  = Set FLDIGI to FLIMG's modem prior to transmitting data</tt>
  * <tt>ON     = Enable</tt>
  * <tt>OFF    = Disable</tt>
  *****************************************************************/
@@ -2146,7 +2146,7 @@ SCRIPT_CODES ScriptParsing::sc_sync_with(struct script_cmds *cmd)
 	bool state = false;
 
 	char *valid_values[] = {
-		(char *) "FLAMP",
+		(char *) "FLIMG",
 		(char *) "FLDIGI",
 		(char *) "PRIOR"
 	};
@@ -2173,7 +2173,7 @@ SCRIPT_CODES ScriptParsing::sc_sync_with(struct script_cmds *cmd)
 				if(error == script_no_errors) {
 					switch(index) {
 						case 0:
-							this->sync_with_flamp(state);
+							this->sync_with_flimg(state);
 							break;
 
 						case 1:

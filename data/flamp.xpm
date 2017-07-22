@@ -1,5 +1,5 @@
 /* XPM */
-static char * flamp_xpm[] = {
+static char * flimg_xpm[] = {
 "64 64 215 2",
 "  	c None",
 ". 	c #000000",

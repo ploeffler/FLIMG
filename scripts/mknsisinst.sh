@@ -4,8 +4,8 @@
 ### 20090510  Stelios Bounanos M0GLD, Dave Freese W1HKJ
 
 ### change for the target application
-flamp_name=flamp
-flamp_bin=flamp.exe
+flimg_name=flimg
+flimg_bin=flimg.exe
 
 if [ $# -ne 2 ]; then
     echo "Syntax: $0 data-dir build-dir" >&2
@@ -34,7 +34,7 @@ fi
 
 set -e
 
-def="-Dflamp_NAME=$flamp_name -Dflamp_BINARY=$flamp_bin -Dflamp_VERSION=$PACKAGE_VERSION"
+def="-Dflimg_NAME=$flimg_name -Dflimg_BINARY=$flimg_bin -Dflimg_VERSION=$PACKAGE_VERSION"
 
 $MAKENSIS -V2 -NOCD -D"INSTALLER_FILE=$INSTALLER_FILE" -D"LICENSE_FILE=$data/../COPYING" \
     -D"SUPPORT_URL=$PACKAGE_HOME" -D"UPDATES_URL=$PACKAGE_DL" $def "$data/win32/fl_app.nsi"

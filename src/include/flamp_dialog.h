@@ -1,5 +1,5 @@
-#ifndef FLAMP_DIALOG_H
-#define FLAMP_DIALOG_H
+#ifndef FLIMG_DIALOG_H
+#define FLIMG_DIALOG_H
 
 #include <string>
 
@@ -69,8 +69,8 @@ extern Fl_Check_Button * btn_enable_unproto_markers;
 
 extern Fl_Check_Button * btn_fldigi_xmt_mode_change;
 extern Fl_Check_Button * btn_load_from_tx_folder;
-extern Fl_Check_Button * btn_sync_mode_flamp_fldigi;
-extern Fl_Check_Button * btn_sync_mode_fldigi_flamp;
+extern Fl_Check_Button * btn_sync_mode_flimg_fldigi;
+extern Fl_Check_Button * btn_sync_mode_fldigi_flimg;
 
 extern Fl_ComboBox       * cbo_header_modes;
 extern Fl_Simple_Counter * cnt_rx_internval_secs;
@@ -117,7 +117,7 @@ extern Fl_Check_Button * btn_enable_tx_on_report;
 
 extern Fl_Hold_Browser * tx_queue;
 
-extern Fl_Double_Window * flamp_dialog();
+extern Fl_Double_Window * flimg_dialog();
 
 extern bool valid_mode_check(std::string &md);
 

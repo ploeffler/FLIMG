@@ -4,17 +4,17 @@
 # Copyright (c) 2009 Stelios Bounanos, M0GLD.
 # Copyright (c) 2009 Dave Freese, W1HKJ
 
-# substitute your application name for instances of FLAMP
+# substitute your application name for instances of FLIMG
 
 # Variables
-!define FLAMP_DESCRIPTION "${FLAMP_NAME} ${FLAMP_VERSION}"
-!define FLAMP_STRING "${FLAMP_NAME}-${FLAMP_VERSION}"
+!define FLIMG_DESCRIPTION "${FLIMG_NAME} ${FLIMG_VERSION}"
+!define FLIMG_STRING "${FLIMG_NAME}-${FLIMG_VERSION}"
 
-!define PRODUCT_BINARY "${FLAMP_BINARY}"
-!define PRODUCT_NAME "${FLAMP_NAME}"
-!define PRODUCT_VERSION "${FLAMP_VERSION}"
-!define PRODUCT_STRING "${FLAMP_STRING}"
-!define PRODUCT_DESCRIPTION "${FLAMP_DESCRIPTION}"
+!define PRODUCT_BINARY "${FLIMG_BINARY}"
+!define PRODUCT_NAME "${FLIMG_NAME}"
+!define PRODUCT_VERSION "${FLIMG_VERSION}"
+!define PRODUCT_STRING "${FLIMG_STRING}"
+!define PRODUCT_DESCRIPTION "${FLIMG_DESCRIPTION}"
 
 # Compression options
 SetCompressor /SOLID lzma
@@ -59,7 +59,7 @@ InstProgressFlags smooth
 VIAddVersionKey ProductName "${PRODUCT_NAME}"
 VIAddVersionKey ProductVersion "${PRODUCT_VERSION}"
 VIAddVersionKey FileVersion "${PRODUCT_VERSION}"
-VIAddVersionKey FileDescription "${FLAMP_DESCRIPTION} installer"
+VIAddVersionKey FileDescription "${FLIMG_DESCRIPTION} installer"
 VIAddVersionKey LegalCopyright "${PRODUCT_NAME} developers"
 VIAddVersionKey OriginalFilename "${INSTALLER_FILE}"
 VIProductVersion "3.0.0.0"
@@ -89,7 +89,7 @@ Section -install
     WriteRegStr HKLM "${REG_UNINSTALL_PATH}" "DisplayVersion" "${PRODUCT_VERSION}"
     WriteRegStr HKLM "${REG_UNINSTALL_PATH}" "DisplayIcon" '"$INSTDIR\${PRODUCT_BINARY}"'
     WriteRegStr HKLM "${REG_UNINSTALL_PATH}" "HelpLink" "${SUPPORT_URL}"
-    WriteRegStr HKLM "${REG_UNINSTALL_PATH}" "Publisher" "FLAMP developers"
+    WriteRegStr HKLM "${REG_UNINSTALL_PATH}" "Publisher" "FLIMG developers"
     WriteRegStr HKLM "${REG_UNINSTALL_PATH}" "URLUpdateInfo" "${UPDATES_URL}"
     WriteRegStr HKLM "${REG_UNINSTALL_PATH}" "UninstallString" '"$INSTDIR\uninstall.exe"'
     WriteRegStr HKLM "${REG_UNINSTALL_PATH}" "QuietUninstallString" '"$INSTDIR\uninstall.exe" /S'
@@ -98,12 +98,12 @@ Section -install
     WriteUninstaller "uninstall.exe"
 SectionEnd
 
-#Var WANT_FLAMP
+#Var WANT_FLIMG
 
-Section "FLAMP"
+Section "FLIMG"
 	SectionIn RO
 	SetOutPath $INSTDIR
-	File "${FLAMP_BINARY}"
+	File "${FLIMG_BINARY}"
 SectionEnd
 
 # Start Menu path
@@ -113,19 +113,19 @@ SectionEnd
 # The following sections are optional
 Section "Start Menu Shortcuts"
     CreateDirectory "${SM_PATH}"
-	CreateShortCut "${SM_PATH}\${FLAMP_NAME}.lnk" "$INSTDIR\${FLAMP_BINARY}" "" "$INSTDIR\${FLAMP_BINARY}" 0
+	CreateShortCut "${SM_PATH}\${FLIMG_NAME}.lnk" "$INSTDIR\${FLIMG_BINARY}" "" "$INSTDIR\${FLIMG_BINARY}" 0
     CreateShortCut "${SM_PATH}\Uninstall.lnk" "$INSTDIR\uninstall.exe" "" "$INSTDIR\uninstall.exe" 0
 SectionEnd
 
 Section "Desktop Shortcuts"
-	CreateShortCut "$DESKTOP\${FLAMP_DESCRIPTION}.lnk" "$INSTDIR\${FLAMP_BINARY}" "" \
-		"$INSTDIR\${FLAMP_BINARY}" 0
+	CreateShortCut "$DESKTOP\${FLIMG_DESCRIPTION}.lnk" "$INSTDIR\${FLIMG_BINARY}" "" \
+		"$INSTDIR\${FLIMG_BINARY}" 0
 SectionEnd
 
 # This is unselected by default
 Section /o "Quick Launch Shortcuts"
-	CreateShortCut "$QUICKLAUNCH\${FLAMP_DESCRIPTION}}.lnk" "$INSTDIR\${FLAMP_BINARY}" "" \
-		"$INSTDIR\${FLAMP_BINARY}" 0
+	CreateShortCut "$QUICKLAUNCH\${FLIMG_DESCRIPTION}}.lnk" "$INSTDIR\${FLIMG_BINARY}" "" \
+		"$INSTDIR\${FLIMG_BINARY}" 0
 SectionEnd
 
 # Uninstaller
@@ -135,13 +135,13 @@ Section "Uninstall"
     DeleteRegKey HKLM "${INSTALL_DIR_REG_KEY}"
 
 # Remove files and uninstaller
-	Delete /REBOOTOK $INSTDIR\${FLAMP_BINARY}
+	Delete /REBOOTOK $INSTDIR\${FLIMG_BINARY}
     Delete /REBOOTOK $INSTDIR\uninstall.exe
 
 # Remove shortcuts, if any
     Delete "${SM_PATH}\*.*"
-	Delete "$DESKTOP\${FLAMP_DESCRIPTION}.lnk"
-	Delete "$QUICKLAUNCH\${FLAMP_DESCRIPTION}.lnk"
+	Delete "$DESKTOP\${FLIMG_DESCRIPTION}.lnk"
+	Delete "$QUICKLAUNCH\${FLIMG_DESCRIPTION}.lnk"
 
 # Remove directories used
     RMDir "${SM_PATH}"
